@@ -1,0 +1,320 @@
+﻿@using System.Configuration
+@using System.Security.Policy
+@model IPM.Web.Models.FormReportViewModel
+@{
+    ViewBag.Title = "Report Candidates";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<style>
+    #label_interviewResult {
+        margin-top: 0px;
+    }
+
+    Table {
+        counter-reset: serial-number; /* Set the serial number counter to 0 */
+    }
+
+        Table td:first-child:before {
+            counter-increment: serial-number; /* Increment the serial number counter */
+            content: counter(serial-number);
+        }
+</style>
+
+<script>
+    $(document).ready(function () {
+
+        $("#div_exportFile").css("display", "none");
+
+        var list = [];
+        var stringPageSize = $("#txt_pagesize").val();
+        //var arr_PageSize = stringPageSize.split(",");
+        var arrPageSize = stringPageSize.split(',').map(function (item) {
+            return parseInt(item, 10);
+        });
+
+        var table = $('#table_reportCandidates').DataTable({
+            "aLengthMenu": arrPageSize,
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "aaData": list,
+            "aoColumns": [
+                { "mDataProp": "" },
+                { "mDataProp": "Name" },
+                { "mDataProp": "Result" },
+                { "mDataProp": "Date" }
+
+            ]
+        });
+
+        $("#btn_loadingData").click(function () {
+
+            var obj = {
+                FromDate: $("#txt_FromDate").val(),
+                ToDate: $("#txt_ToDate").val(),
+                Name: $("#txt_Name").val(),
+                InterviewResult: $("#cbb_InterviewResult").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "/Report/getDataReportCandidates",
+                data: JSON.stringify(obj),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                error: function (response) { },
+                success: function (response) {
+                    if (response != "error") {
+
+                        var boxError = $("#AlertBoxError");
+                        if (boxError.length != 0) {
+                            boxError.css("display", "none");
+                        }
+
+                        list = response;
+                        for (var i = 0; i < list.length; i++) {
+                            list[i].Date = ToJavaScriptDate(list[i].Date);
+                            if (list[i].Result == 1) {
+                                list[i].Result = "True";
+                            }
+                            if (list[i].Result == 0) {
+                                list[i].Result = "Fail";
+                            }
+                            if (list[i].Result == 2) {
+                                list[i].Result = "None";
+                            }
+                        }
+
+                        if (list.length != 0) {
+                            $("#div_exportFile").css("display", "");
+
+                            //
+                            $('#table_reportCandidates').dataTable().fnDestroy();
+                            var table = $('#table_reportCandidates').DataTable({
+                                "aLengthMenu": arrPageSize,
+                                "paging": true,
+                                "lengthChange": true,
+                                "searching": true,
+                                "ordering": true,
+                                "info": true,
+                                "autoWidth": false,
+                                "aaData": list,
+                                "aoColumns": [
+                                    { "mDataProp": "No" },
+                                    { "mDataProp": "Name" },
+                                    { "mDataProp": "Result" },
+                                    { "mDataProp": "Date" }
+                                ]
+                            });
+
+                        }
+                    } else {
+                        window.location = '/Report/ReportCandidates';
+                    }
+                }
+            });
+        });
+
+        $("#btn_clearFilter").click(function() {
+
+            list = [];
+
+            $("#txt_FromDate").val("");
+            $("#txt_ToDate").val("");
+            $("#txt_Name").val("");
+            $("#cbb_InterviewResult").val("");
+
+            $("#div_exportFile").css("display", "none");
+
+            $('#table_reportCandidates').dataTable().fnDestroy();
+            $('#table_reportCandidates').DataTable({
+                "aLengthMenu": arrPageSize,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "aaData": list,
+                "aoColumns": [
+                    { "mDataProp": "" },
+                    { "mDataProp": "Name" },
+                    { "mDataProp": "Result" },
+                    { "mDataProp": "Date" }
+
+                ]
+            });
+        });
+
+    });
+
+    function ToJavaScriptDate(value) {
+        var pattern = /Date\(([^)]+)\)/;
+        var results = pattern.exec(value);
+        var dt = new Date(parseFloat(results[1]));
+        return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+    }
+</script>
+
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.ReportCandidates
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> @IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li class="active">@IPM.Web.MultiLanguage.Resource.ReportCandidates</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-12">
+                <div class="col-md-12">
+                    <!--Form-->
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.Filter</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+                            </div>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            @using (Html.BeginForm("getDataReportCandidates", "Report", FormMethod.Post, new { @class = "form-horizontal" }))
+                            {
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <!-- /.form-group -->
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="">@IPM.Web.MultiLanguage.Resource.FromDate:</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    <input type="hidden" value="@ConfigurationManager.AppSettings["PageSize"]" id="txt_pagesize" />
+                                                    @Html.TextBoxFor(model => model.FromDate, new { @class = "form-control", @type = "date", @placeholder = "Enter Start Time", @id = "txt_FromDate", })
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- /.form-group -->
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-md-6">
+                                        <!-- /.form-group -->
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="">@IPM.Web.MultiLanguage.Resource.Name:</label>
+                                            <div class="col-sm-9">
+                                                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", @type = "text", @placeholder = "Enter Start Time", @id = "txt_Name", })
+                                            </div>
+                                        </div>
+                                        <!-- /.form-group -->
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                                <br>
+                                <div class="col-md-12">
+                                    <div class="col-md-6">
+                                        <!-- /.form-group -->
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="">@IPM.Web.MultiLanguage.Resource.ToDate:</label>
+                                            <div class="col-sm-9">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    @Html.TextBoxFor(model => model.ToDate, new { @class = "form-control", @type = "date", @placeholder = "Enter Start Time", @id = "txt_ToDate", })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /.form-group -->
+                                    </div>
+                                    <!-- /.col -->
+                                    <div class="col-md-6">
+                                        <!-- /.form-group -->
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-3" for="" id="label_interviewResult">@IPM.Web.MultiLanguage.Resource.InterviewResult:</label>
+                                            <div class="col-sm-9">
+                                                @{
+                                                        var Items = new SelectList(new[]
+                                                        {
+                                                           new SelectListItem {Text = "", Value = IPM.Web.MultiLanguage.Resource.ChooseResult},
+                                                           new SelectListItem {Text = "1", Value = "Pass"},
+                                                           new SelectListItem {Text = "0", Value = "Fail"},
+                                                           new SelectListItem {Text = "2", Value = "None"}
+                                                        }, "Text", "Value");
+                                                }
+                                                @Html.DropDownListFor(model => model.InterviewResult, (SelectList)Items, new { @class = "form-control", @id = "cbb_InterviewResult" })
+                                            </div>
+                                        </div>
+                                        <!-- /.form-group -->
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                            <!-- /.row -->
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-offset-4 col-md-2">
+                                    <button type="button" class="btn btn-primary" id="btn_loadingData">@IPM.Web.MultiLanguage.Resource.LoadingData</button>
+                                </div>
+                                <div class="col-md-offset-1 col-md-5">
+                                    <button type="button" class="btn btn-default" id="btn_clearFilter">@IPM.Web.MultiLanguage.Resource.ClearFilter</button>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                    <!--End Form-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- /.row -->
+    <!--Table-->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.Result</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div class="col-md-12" id="div_exportFile">
+                        <div class="col-md-offset-10 col-md-2">
+                            <button onclick="window.location = '@Url.Action("ExportExcelReportCandidates","Report")';" class="btn bg-default btn-flat margin">Excel</button>
+                            <button onclick="window.location = '@Url.Action("ExportPdfReportCandidates","Report")';" type="button" class="btn bg-default btn-flat margin">PDF</button>
+                        </div>
+                    </div>
+                    <table class="table table-bordered" id="table_reportCandidates">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.Name</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.InterviewResult</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.StartDate</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!--End Table-->
+    <!-- /.row -->
+</section>
+<!-- /.content -->

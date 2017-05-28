@@ -1,0 +1,93 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<IPM.Model.Models.Interview>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+    var i = 1;
+}
+@section Scripts
+{
+    <script src="~/Scripts/Interview/editable.js"></script>
+    <script src="~/Scripts/Interview/InterviewJS.js"></script>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.InterviewResultsManagement
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")">
+            <i class="fa fa-dashboard"></i> @IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li class="active">@IPM.Web.MultiLanguage.Resource.InterviewResultsManagement</li>
+    </ol>
+</section>
+<!-- /.Content Header (Page header) -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.InterviewResults</h3>
+                </div>
+                <!-- Interview Results -->
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th style="width: 10px">ID</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.CandidateName</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Interviewers</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Round</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.StartTime</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Result</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Action</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr class="item">
+                                <td>@i</td>
+                                <td>@item.Candidate.Name</td>
+                                <td>@item.Interviewer.Account</td>
+                                <td>@item.RoundProcess.InterviewRound.RoundName</td>
+                                <td>@item.StartTime.ToString(" dd/MM/yyyy hh:mm ")</td>
+                                @if (item.Result == true)
+                                {
+                                    <td>Pass</td>
+                                }
+                                else
+                                {
+                                    <td>Fail</td>
+                                }
+                                <td style="width:120px">
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="fa fa-cogs"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="@Url.Action("InterviewResult", new { id = item.ID })">
+                                                <i class="fa fa-play"></i>@IPM.Web.MultiLanguage.Resource.Edit</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            i++;
+                        }
+                    </table>
+                </div>
+                <!-- /.Interview Results -->
+                <div class="box-footer clearfix">
+                    <div class="pull-left" style="padding-top:20px">
+                        <h3 class="panel-title">@IPM.Web.MultiLanguage.Resource.Page 
+                        @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount </h3>
+                    </div>
+                    <div class="pull-right">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--/.Main content -->

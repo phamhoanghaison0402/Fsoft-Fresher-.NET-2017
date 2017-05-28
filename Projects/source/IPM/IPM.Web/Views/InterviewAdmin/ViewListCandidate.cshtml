@@ -1,0 +1,155 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<IPM.Model.Models.Candidate>
+@using System.Configuration;
+@{
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+    var number = 1;
+}
+<link href="~/Content/Css/InterviewAdmin/dataTables.bootstrap.css" rel="stylesheet" />
+<link href="~/Content/Css/InterviewAdmin/InterviewAdmin.css" rel="stylesheet" />
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.ManagementInterviewAdmin
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i>@IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li class="active"><a href="@Url.Action("Index","InterviewAdmin")">@IPM.Web.MultiLanguage.Resource.ManagementInterviewAdmin</a></li>
+        <li class="active">@IPM.Web.MultiLanguage.Resource.ListCandidate</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.ListCandidate</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <label>@IPM.Web.MultiLanguage.Resource.InterviewAdmin: @ViewBag.InterviewAdminAccount</label>
+                    <div class="row">
+                        <div class="col-md-8 div_ViewItem">
+                            <label>
+                                @IPM.Web.MultiLanguage.Resource.View
+                                <select id="mySelect" onchange="SelectChange(@ViewBag.InterviewAdminId)">
+                                    @{
+                                        string pageSize = ConfigurationManager.AppSettings["PageSize"];
+                                        string[] Arr_pageSize = pageSize.Split(',');
+                                        for (var index = 0; index < Arr_pageSize.Length; index++)
+                                        {
+                                            <option value="@Arr_pageSize[index]">@Arr_pageSize[index]</option>
+                                        }
+                                    }
+                                </select>
+                                @IPM.Web.MultiLanguage.Resource.Item
+                            </label>
+                        </div>
+                    </div>
+                    <table class="table table-bordered table-listInterviewAdmin" id="table-listInterviewAdmin">
+                        <thead>
+                            <tr>
+                                <th style="width: 5%;">@IPM.Web.MultiLanguage.Resource.No</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.Name</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.Birthday</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.Email</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.Phone</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.University</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.Position</th>
+                                <th style="width: 15%;">@IPM.Web.MultiLanguage.Resource.Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@number</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Birthdate.Year</td>
+                                    <td>@item.Email</td>
+                                    <td>@item.Phone</td>
+                                    <td>@item.University</td>
+                                    <td>@item.Position.Name</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                <span class="fa fa-cogs"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu" id="menu_ViewCandidate">
+                                                <li>
+                                                    @Html.ActionLink(@IPM.Web.MultiLanguage.Resource.Transmit, "ViewPatial", "InterviewAdmin",
+                                                                        new {Name = item.Name, candidateId = item.ID, positionId = item.PositionID,
+                                                                            InterviewAdminId = ViewBag.InterviewAdminId },
+                                                                        new { @class = "modal-link fa fa-exchange" })
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                number++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <div class="pull-left" style="padding-top:20px">
+                        <h3 class="panel-title">@IPM.Web.MultiLanguage.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount </h3>
+                    </div>
+                    <div class="pull-right">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+    @* --- jQuery function --- *@
+    <script>
+        var _candidateID = 0;
+
+        $(function () {
+            // Config table list interview admin with data table
+            $('#table-listInterviewAdmin').DataTable({
+                "paging": false,
+                "lengthChange": false,
+                "searching": true,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false
+            });
+
+            // set value for select element
+            var pageSize = GetPageSizeValue('pageSize');
+            if (typeof (pageSize) != "undefined") {
+                $('#mySelect').val(pageSize);
+            }
+
+        });
+
+        // Function set page size to url and controller
+        function SelectChange(interviewAdminId) {
+            var index = $('#mySelect').val();
+            window.location.href = "/InterviewAdmin/ViewListCandidate/" + interviewAdminId + "?pageSize=" + index;
+        }
+
+        // Function get page size
+        function GetPageSizeValue(param) {
+            var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for (var i = 0; i < url.length; i++) {
+                var urlparam = url[i].split('=');
+                if (urlparam[0] == param) {
+                    return urlparam[1];
+                }
+            }
+        }
+    </script>
+</section>
+<!-- /.content -->
+

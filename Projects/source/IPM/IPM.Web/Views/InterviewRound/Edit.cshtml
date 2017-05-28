@@ -1,0 +1,52 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<IPM.Model.Models.InterviewRound>
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">@IPM.Web.MultiLanguage.Resource.EditRound</h4>
+    </div>
+    <div class="modal-body">
+        @using (Ajax.BeginForm("Edit", "InterviewRound", FormMethod.Post, new AjaxOptions { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "interviewRound"} ))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary()
+            if (Model != null)
+            {
+                foreach (var interviewround in Model)
+                {
+                    <div class="form-group" id="roundNameFormEdit">
+                        <label><span class="glyphicon "></span>@IPM.Web.MultiLanguage.Resource.RoundName</label>
+                        <input type="text" id="roundNameEdit" maxlength="50" name="roundName" class="form-control" tabindex="1" onclick="removeValidateEdit()" value="@interviewround.RoundName" />
+                        <span class="help-block hidden" id="roundNameRequiredEdit"><i class="fa fa-times-circle-o"></i>This field can not be empty</span>
+                    </div>
+                    <div class="form-group">
+                        <label><span class="glyphicon "></span>@IPM.Web.MultiLanguage.Resource.Description</label>
+                        <input type="text" name="description" maxlength="100" class="form-control" tabindex="2" value="@interviewround.Description" />
+                    </div>
+                    <div class="form-group">
+                        <label><span class="glyphicon "></span>@IPM.Web.MultiLanguage.Resource.GuidelineName</label>
+                        <select class="form-control select2" name="guidelineID" tabindex="3" style="width: 100%;">
+                            <option selected="selected" value="@interviewround.Guideline.ID">@interviewround.Guideline.Name</option>
+                            @foreach (var listGuideLine in ViewBag.ListGuideline)
+                            {
+                                if (@listGuideLine.Value != @interviewround.Guideline.ID.ToString())
+                                {
+                                    <option value="@listGuideLine.Value">@listGuideLine.Text</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                }
+            }
+            <div class="box-footer">
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submitButtonEdit" name="submitButtonEdit" onclick="validateEdit()" class="btn btn-primary btn-flat pull-right "><span class="glyphicon"></span>@IPM.Web.MultiLanguage.Resource.Save</button>
+                <button type="button" class="btn btn-default pull-left" onclick="removeValidateEdit()" data-dismiss="modal"><span class="glyphicon "></span>@IPM.Web.MultiLanguage.Resource.Cancel</button>
+            </div>
+        }
+    </div>
+</div>
+
+<script src="~/Scripts/InterviewRound/ValidateEdit.js"></script>

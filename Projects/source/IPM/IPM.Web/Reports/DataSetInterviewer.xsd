@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetInterview" targetNamespace="http://tempuri.org/DataSetInterview.xsd" xmlns:mstns="http://tempuri.org/DataSetInterview.xsd" xmlns="http://tempuri.org/DataSetInterview.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetInterview" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetInterview" msprop:Generator_UserDSName="DataSetInterview">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Interviews" msprop:Generator_TableClassName="InterviewsDataTable" msprop:Generator_TableVarName="tableInterviews" msprop:Generator_RowChangedName="InterviewsRowChanged" msprop:Generator_TablePropName="Interviews" msprop:Generator_RowDeletingName="InterviewsRowDeleting" msprop:Generator_RowChangingName="InterviewsRowChanging" msprop:Generator_RowEvHandlerName="InterviewsRowChangeEventHandler" msprop:Generator_RowDeletedName="InterviewsRowDeleted" msprop:Generator_RowClassName="InterviewsRow" msprop:Generator_UserTableName="Interviews" msprop:Generator_RowEvArgName="InterviewsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Account" msprop:Generator_ColumnVarNameInTable="columnAccount" msprop:Generator_ColumnPropNameInRow="Account" msprop:Generator_ColumnPropNameInTable="AccountColumn" msprop:Generator_UserColumnName="Account" type="xs:string" minOccurs="0" />
+              <xs:element name="NumOfCandidates" msprop:Generator_ColumnVarNameInTable="columnNumOfCandidates" msprop:Generator_ColumnPropNameInRow="NumOfCandidates" msprop:Generator_ColumnPropNameInTable="NumOfCandidatesColumn" msprop:Generator_UserColumnName="NumOfCandidates" type="xs:string" minOccurs="0" />
+              <xs:element name="PassFail" msprop:Generator_ColumnVarNameInTable="columnPassFail" msprop:Generator_ColumnPropNameInRow="PassFail" msprop:Generator_ColumnPropNameInTable="PassFailColumn" msprop:Generator_UserColumnName="PassFail" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

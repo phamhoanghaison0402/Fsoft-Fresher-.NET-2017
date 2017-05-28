@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = @IPM.Web.MultiLanguage.Resource.CreateInterviewProcess;
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.ManagementInterviewProcess
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> @IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li class="active"> <a href="@Url.Action("Index","InterviewProcess")">@IPM.Web.MultiLanguage.Resource.ManagementInterviewProcess</a></li>
+        <li class="active">@IPM.Web.MultiLanguage.Resource.CreateInterviewProcess</li>
+    </ol>
+</section>
+<section class="content">
+    <form class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.CreateInterviewProcess</h3>
+        </div>
+        <!-- form start -->
+        <div role="form">
+            <div class="box-body">
+                <div class="row">
+                    <!-- Information interview process widgets start -->
+                    <div class="col-md-12">
+                        <div class="box box-default">
+                            <div class="box-header with-border">
+                                <div class="box-tools pull-left">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.InformationInterviewProcess</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="display: block;">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-6" id="ProcessNameFormCreate">
+                                            <label for="ProcessName" class="col-sm-2 control-label">@IPM.Web.MultiLanguage.Resource.ProcessName</label>
+                                            <div class="col-sm-10">
+                                                <input type="text" class="form-control" id="ProcessName" tabindex="1" onclick="hiddenProcessNameValidateMessage()">
+                                                <label class="control-label hidden" for="inputError" id="blockProcessNameCreate">
+                                                    <i class="fa fa-times-circle-o"></i> @IPM.Web.MultiLanguage.Resource.ProcessNameNotEmpty
+                                                </label>
+                                                <label class="control-label hidden" for="inputError" id="blockProcessNameTooLongCreate">
+                                                    <i class="fa fa-times-circle-o"></i> @IPM.Web.MultiLanguage.Resource.InterviewProcessNameTooLong
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="Status" class="col-sm-2 control-label">@IPM.Web.MultiLanguage.Resource.Status</label>
+                                            <div class="col-sm-10">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" class="minimal-red" id="Status" tabindex="2" style="position:absolute;"> @IPM.Web.MultiLanguage.Resource.Active
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12">
+                                        <div class="col-md-6">
+                                            <label for="Position" class="col-sm-2 control-label">@IPM.Web.MultiLanguage.Resource.Position</label>
+                                            <div class="col-sm-10">
+                                                <select id="selectPosition" class="form-control select2 select2-hidden-accessible" tabindex="3" style="width: 100%;" aria-hidden="true">
+                                                    @foreach (var item in ViewBag.ListPosition)
+                                                    {
+                                                        <option value="@item.Value">@item.Text</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="StartDateFormCreate">
+                                            <label for="StartDate" class="col-sm-2 control-label">@IPM.Web.MultiLanguage.Resource.StartDate</label>
+                                            <div class="col-sm-10">
+                                                <div class="input-group date">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-calendar"></i>
+                                                    </div>
+                                                    <input type="text" class="form-control pull-right" id="datepicker" tabindex="4" data-date-format='dd/mm/yyyy' onclick="hiddenProcessStartDateValidateMessage()">
+                                                </div>
+                                                <label class="control-label hidden" for="inputError" id="blockStartDateCreate">
+                                                    <i class="fa fa-times-circle-o"></i> @IPM.Web.MultiLanguage.Resource.ProcessStartDateNotEmpty
+                                                </label>
+                                                <label class="control-label hidden" for="inputError" id="blockProcessStartDateTooLongCreate">
+                                                    <i class="fa fa-times-circle-o"></i> @IPM.Web.MultiLanguage.Resource.InterviewProcessStartDateTooLong
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- Information interview process widgets end -->
+
+                    <!-- Interview round widgets start -->
+                    <div class="col-md-12">
+                        <div class="box box-default">
+                            <div class="box-header with-border">
+                                <div class="box-tools pull-left">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.InterviewRound</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="display: block;" id="listRoundFormCreate">
+                                <div class="col-md-6">
+                                    <select id="selectedRound" class="form-control select2 select2-hidden-accessible" style="width: 100%;" tabindex="5" aria-hidden="true"></select>
+                                    <label class="control-label hidden" for="inputError" id="blockListRoundCreate">
+                                        <i class="fa fa-times-circle-o"></i> @IPM.Web.MultiLanguage.Resource.ProcessListRoundNotEmpty
+                                    </label>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" onclick="addRoundTemp()" class="btn btn-primary" tabindex="6">@IPM.Web.MultiLanguage.Resource.Add</button>
+                                </div>
+                            </div>
+                            <div class="box-body" style="display: block;">
+                                <table id="interviewRoundTable" class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">ID</th>
+                                        <th>@IPM.Web.MultiLanguage.Resource.RoundName</th>
+                                        <th>@IPM.Web.MultiLanguage.Resource.Description</th>
+                                        <th>@IPM.Web.MultiLanguage.Resource.Action</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer">
+            <div class="pull-right">
+                <button type="button" onclick="addProcess()" class="btn btn-primary" tabindex="7">@IPM.Web.MultiLanguage.Resource.Save</button>
+            </div>
+        </div>
+    </form>
+</section>
+<script>
+    var listRoundIn = [];
+    var listAddRound = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ListIRname));
+
+    //string to append a row to table
+    function createAppendString(data){
+        var appendString = '<tr id='+data.ID+'><td>'+data.ID+'</td> <td class="text-left">'+data.RoundName+'</td> <td class="text-left">'+ data.Description +
+                    '<td style="width:120px">'+
+                                                '<div class="btn-group">'+
+                        '<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'+
+                          '<i class="fa fa-cogs"></i>'+
+                        '</button>'+
+                                                    '</button>'+
+                                                    '<ul class="dropdown-menu" role="menu">'+
+                                                        '<li><a onclick="Delete('+ data.ID +',\''+ data.RoundName +'\')"><i class="fa fa-trash"></i>@IPM.Web.MultiLanguage.Resource.Delete</a></li>'+
+                                                    '</ul>'+
+                                                '</div>'+
+                                            '</td>';
+        return appendString;
+    }
+</script>
+<script src="~/Scripts/InterviewProcess/create.js"></script>

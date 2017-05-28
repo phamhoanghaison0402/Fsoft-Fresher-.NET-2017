@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+@section scripts
+{
+    <link href="~/Content/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+    <link href="~/Content/plugins/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <script src="~/Content/plugins/select2/select2.min.js"></script>
+    <script src="~/Content/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="~/Content/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="~/Content/plugins/colorpicker/bootstrap-colorpicker.js"></script>
+    <script src="~/Content/plugins/timepicker/bootstrap-timepicker.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Content/plugins/jQueryUI/jquery-ui.min.js"></script>
+    <script src="~/Content/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <script src="~/Content/plugins/fastclick/fastclick.js"></script>
+    <script src="~/Content/dist/js/app.min.js"></script>
+    <script src="~/Scripts/lib/moment.min.js"></script>
+    <script src="~/Content/plugins/fullcalendar/fullcalendar.min.js"></script>
+    <script src="~/Scripts/Calendar/JsCalendar.js"></script>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+}
+<section class="content-header">
+    <h1>
+        Calendar
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li class="active">Management Calendar</li>
+    </ol>
+</section>
+<div style="width:100%; height:10px; border-bottom:1px solid"></div>
+<div id="icon_loadingdata" style="position: fixed;margin-top: 20%;margin-left: 40%;z-index:1000;">
+    <i class="fa fa-spinner fa-spin" style="font-size:100px"></i>
+</div>
+<div id="calendar"></div>
+
+<!--Modal-->
+<div id="modalCalendar" class="modal">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Calendar</h4>
+            </div>
+            <div class="modal-body">
+                <form id="EventForm" class="form-horizontal">
+                    <!-- /.row -->
+                    <div class="row">
+                        <!-- /.col -->
+                        <div class="col-md-12">
+                            <div class="col-md-12">
+                                <input type="hidden" id="eventID">
+                                <div class="form-group" id="hideOrganizer" style="display:none;">
+                                    <label class="control-label col-sm-3" for="">Organizer :</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="txt_Organizer" placeholder="Organizer" disabled>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="">Event Title:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="Title" id="txt_eventTitle" placeholder="Title here">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="">Location Title:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" name="Location" id="txt_Location" placeholder="Location here">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="">Start Date:</label>
+                                    <div class="col-sm-9">
+                                        <input type="datetime-local" class="form-control" name="StartDate" id="txt_StartDate">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="">End Date:</label>
+                                    <div class="col-sm-9">
+                                        <input type="datetime-local" class="form-control" name="EndDate" id="txt_EndDate">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-sm-3" for="">Body:</label>
+                                    <div class="col-sm-9">
+                                        <textarea class="form-control" rows="5" id="txt_Body"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.col -->
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnSaveData" class="btn btn-primary">Save Event</button>
+                <button type="button" id="btnPopupCancel" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,42 @@
+﻿<!--Add Modal-->
+<div class="modal fade" id="AddQuestionModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@IPM.Web.MultiLanguage.Resource.AddQuestion</h4>
+            </div>
+            <div class="modal-body">
+                <!--Form Add-->
+                <form class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="inputskillid" 
+                                   class="col-sm-2 control-label">@IPM.Web.MultiLanguage.Resource.Question</label>
+                            <div class="col-sm-10" id="comboboxQuestion">
+                                <select id="selectQuestion" class="form-control select2 select2-hidden-accessible" 
+                                        tabindex="2" style="width: 100%;" aria-hidden="true">
+                                    @foreach (var item in ViewBag.Questions)
+                                    {
+                                        <option value='@item.ID'> @item.Content</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div id="addquestion-box-footer">    
+                        <button type="button" id="closeModal" 
+                                class="btn btn-default">@IPM.Web.MultiLanguage.Resource.Cancel</button>
+                        <button type="button" data-pk="" id="btnAddQuestion" 
+                                class="btn btn-info pull-right">@IPM.Web.MultiLanguage.Resource.Add</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+                <!--/.End Form Edit-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--/.Ađd Modal-->

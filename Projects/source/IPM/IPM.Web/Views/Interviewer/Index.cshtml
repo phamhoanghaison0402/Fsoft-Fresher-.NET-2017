@@ -1,0 +1,103 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<IPM.Model.Models.User>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.InterviewerManagement
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i>@IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li class="active"><a href="@Url.Action("Index","Interviewer")">@IPM.Web.MultiLanguage.Resource.InterviewerManagement</a></li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row" />
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title"></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="tblInterviewer" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>@IPM.Web.MultiLanguage.Resource.FullName</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Account</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Email</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @* Fill List Interviewer Into Table *@
+                        @foreach (var i in Model)
+                        {
+                            <tr>
+                                <td>@i.Username</td>
+                                <td>@i.Account</td>
+                                <td>@String.Format("{0}@fsoft.fpt.vn", i.Account)</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle " data-toggle="dropdown">
+                                            <span class="fa fa-cogs"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu" id="menu_ViewCandidate">
+                                            <li>
+                                                <a href="@Url.Action("ViewListCandidate","InterviewAdmin",new { interviewAdminId = i.ID, account = i.Account })">
+                                                    <i class="fa fa-eye"></i>@IPM.Web.MultiLanguage.Resource.ViewCandidate
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>@IPM.Web.MultiLanguage.Resource.FullName</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Account</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Email</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+    <div class="box-footer clearfix">
+        <div class="pull-left" style="padding-top:20px">
+            <h3 class="panel-title">@IPM.Web.MultiLanguage.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount </h3>
+        </div>
+        <div class="pull-right">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+
+
+<script src="~/Scripts/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/datatables/dataTables.bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $("#tblInterviewer").DataTable({
+            "paging": false,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": false,
+            "autoWidth": false
+        });
+    });
+</script>
+<!-- /.content-wrapper -->

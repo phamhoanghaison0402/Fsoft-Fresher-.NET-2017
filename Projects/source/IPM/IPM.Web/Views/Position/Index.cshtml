@@ -1,0 +1,453 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<IPM.Model.Models.Position>
+@using System.Configuration;
+<link href="~/Content/Css/InterviewAdmin/dataTables.bootstrap.css" rel="stylesheet" />
+
+@{
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+    ViewBag.Title = "Index";
+    var z = 1;
+}
+
+<style>
+    table th, td {
+        text-align: left;
+    }
+</style>
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.ManagePositions
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> @IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li class="active">@IPM.Web.MultiLanguage.Resource.ManagePositions</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.ListPositions</h3>
+                    <div class="box-tools">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#AddPositionModal">
+                            <i class="fa fa-plus"></i>
+                            @IPM.Web.MultiLanguage.Resource.CreatePosition
+                        </button>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-8 div_ViewItem">
+                            <label>
+                                @IPM.Web.MultiLanguage.Resource.View
+                                <select id="mySelect" onchange="SelectChange()">
+                                    @{
+                                        string pageSize = ConfigurationManager.AppSettings["PageSize"];
+                                        string[] Arr_pageSize = pageSize.Split(',');
+                                        for (var index = 0; index < Arr_pageSize.Length; index++)
+                                        {
+                                            <option value="@Arr_pageSize[index]">@Arr_pageSize[index]</option>
+                                        }
+                                    }
+                                </select>
+                                @IPM.Web.MultiLanguage.Resource.Item
+                            </label>
+                        </div>
+                    </div>
+                    <table class="table table-bordered" id="datatable-list">
+                        <thead>
+                            <tr>
+                                <th style="width: 10px">#</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.Code</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.PositionName</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@z</td>
+                                    <td>@item.Code</td>
+                                    <td>@item.Name</td>
+                                    <td style="width:120px">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                                <span class="fa fa-cogs"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a href="#" onclick="return PopupUpdate('@item.ID','@item.Code','@item.Name');"><i class="fa fa-edit"></i>@IPM.Web.MultiLanguage.Resource.Edit</a></li>
+                                                <li><a href="#" onclick="return PopupDelete('@item.ID');"><i class="fa fa-trash"></i>@IPM.Web.MultiLanguage.Resource.Delete</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                z++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <div class="pull-left" style="padding-top:20px">
+                        <h3 class="panel-title">@IPM.Web.MultiLanguage.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount </h3>
+                    </div>
+                    <div class="pull-right">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<div class="modal fade" id="AddPositionModal" tabindex='-1' role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@IPM.Web.MultiLanguage.Resource.AddPositionlHeader</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">@IPM.Web.MultiLanguage.Resource.Code:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="addcode" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">
+                            @IPM.Web.MultiLanguage.Resource.PositionName:
+                        </label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="addname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"></label>
+                        <div class="col-sm-9">
+                            <label class="text-left text-danger" id="error" >
+                                
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default" id="AddPosition">@IPM.Web.MultiLanguage.Resource.Add</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">@IPM.Web.MultiLanguage.Resource.Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="EditPositionModal" tabindex='-1' role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@IPM.Web.MultiLanguage.Resource.EditPositionHeader</h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <input type="hidden" class="form-control" id="updatepositionid">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">@IPM.Web.MultiLanguage.Resource.Code:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="updatepositioncode" autofocus>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">@IPM.Web.MultiLanguage.Resource.PositionName:</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" id="updatepositionname">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3"></label>
+                        <div class="col-sm-9">
+                            <label class="text-left text-danger" id="errorupdate">
+
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default" id="UpdatePosition">@IPM.Web.MultiLanguage.Resource.Update</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">@IPM.Web.MultiLanguage.Resource.Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="DeletePositionModal" tabindex='-1' role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@IPM.Web.MultiLanguage.Resource.Warning</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="deletepositionid">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <h3 class="text-center">@IPM.Web.MultiLanguage.Resource.WarningDelete</h3>
+                </div>
+                <br /><br />
+                <div class="row">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" autofocus
+                                    id="DeletePosition">
+                                @IPM.Web.MultiLanguage.Resource.Delete
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">@IPM.Web.MultiLanguage.Resource.Cancel</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="hide" id="checkcode">@IPM.Web.MultiLanguage.Resource.CheckCode</p>
+<p class="hide" id="checkname">@IPM.Web.MultiLanguage.Resource.CheckName</p>
+
+<script>
+    $(function () {
+        $("#filter_div").change(function () {
+            $.get("@Url.Action("Index","Position")",
+                { name: $('#positionName').val() },
+                function (data) {
+              });
+        });
+
+        //datatable for search function
+        $('#datatable-list').DataTable({
+            "paging": false,
+            "lengthChange": false,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+
+        //event click add new position
+        $("#AddPosition").click(function () {
+            var code = $('#addcode').val();
+            var name = $('#addname').val();
+            var error = CheckData(code, name);
+
+            if (error != "") {
+                $('#error').html(error);
+            } else {
+                $('#AddPositionModal').modal('hide');
+                AddPosition(code, name);
+            }
+        });
+
+        //event key press add position
+        $("#AddPositionModal").on("keydown", function (e) {
+            if (e.which == 13)
+            {
+                $("#AddPosition").click();
+            }
+        });
+
+        //event click update position information
+        $("#UpdatePosition").click(function () {
+            var id = $('#updatepositionid').val();
+            var code = $('#updatepositioncode').val();
+            var name = $('#updatepositionname').val();
+            var error = CheckData(code, name);
+
+            if (error != "") {
+                $('#errorupdate').html(error);
+            } else {
+                $('#EditPositionModal').modal('hide');
+                UpdatePosition(id, code, name);
+            }
+        });
+
+        //event key press edit position
+        $("#EditPositionModal").on("keydown", function (e) {
+            if (e.which == 13) {
+                $("#UpdatePosition").click();
+            }
+        });
+
+        //event click delete position
+        $("#DeletePosition").click(function () {
+            $('#DeletePositionModal').modal('hide');
+            var id = $('#deletepositionid').val();
+
+            DeletePosition(id);
+        });
+
+        //event key press delete position
+        $("#DeletePositionModal").on("keydown", function (e) {
+            if (e.which == 13) {
+                $('#DeletePositionModal').modal('hide');
+            }
+        });
+
+        //function add new position
+        function AddPosition(code, name) {
+            $.ajax({
+                url: "/Position/Create",
+                type: "POST",
+                data: { code: code,name: name },
+                success: function (result) {
+                    window.location = '/Position';
+                },
+                error: function (result) {
+                    alert("Error: Internet");
+                }
+            });
+        }
+
+        //function update position
+        function UpdatePosition(id, code, name){
+
+            $.ajax({
+                url: "/Position/Update",
+                type: "POST",
+                data: { id: id, code: code, name: name },
+                success: function (result) {
+                    window.location = '/Position';
+                },
+                error: function (result) {
+                    alert("Error: Internet");
+                }
+            });
+        }
+
+        //function delete postion
+        function DeletePosition(id) {
+            $.ajax({
+                url: "/Position/Delete",
+                type: "POST",
+                data: { id: id},
+                success: function (result) {
+                    window.location = '/Position';
+                },
+                error: function (result) {
+                    alert("Error: Internet");
+                }
+            });
+        }
+
+        // set value for select element
+        var pageSize = GetPageSizeValue('pageSize');
+        if (typeof (pageSize) != "undefined") {
+            $('#mySelect').val(pageSize);
+        }
+    });
+
+    //popup update position
+    function PopupUpdate(id, code, name) {
+        $('#updatepositionid').val(id);
+        $('#updatepositioncode').val(code);
+        $('#updatepositionname').val(name);
+        $('#EditPositionModal').modal('show');
+    }
+
+    //popup delete position
+    function PopupDelete(id) {
+        $('#deletepositionid').val(id);
+        $('#DeletePositionModal').modal('show');
+    }
+
+    // Function set page size to url and controller
+    function SelectChange() {
+        var index = $('#mySelect').val();
+        window.location.href = "/Position/Index/?pageSize=" + index;
+    }
+
+    // Function get page size
+    function GetPageSizeValue(param) {
+        var url = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+        for (var i = 0; i < url.length; i++) {
+            var urlparam = url[i].split('=');
+            if (urlparam[0] == param) {
+                return urlparam[1];
+            }
+        }
+    }
+
+    function ValidateCode(code) {
+        var rgx = /^[A-Z0-9]{1,20}$/g;
+        if (rgx.test(code)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function ValidateName(name) {
+        var rgx = /^([A-Za-zAÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶEÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢUÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸ""ỴĐaáàảãạâấầẩẫậăắằẳẵặeéèẻẽẹêếềểễệiíìỉĩịoóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựyýỳỷỹỵđ]{1})+([A-Za-z0-9 AÁÀẢÃẠÂẤẦẨẪẬĂẮẰẲẴẶEÉÈẺẼẸÊẾỀỂỄỆIÍÌỈĨỊOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢUÚÙỦŨỤƯỨỪỬỮỰYÝỲỶỸỴĐaáàảãạâấầẩẫậăắằẳẵặeéèẻẽẹêếềểễệiíìỉĩịoóòỏõọôốồổỗộơớờởỡợuúùủũụưứừửữựyýỳỷỹỵđ]){0,49}$/g;
+        if (rgx.test(name)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    function CheckData(code, name) {
+        var error = "";
+        if (!ValidateCode(code)) {
+            error = error + $('#checkcode').text() + "</br>";
+        }
+        if (!ValidateName(name)) {
+            error = error + $('#checkname').text();
+        }
+        return error;
+    }
+</script>

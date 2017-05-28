@@ -1,0 +1,125 @@
+﻿@model IPM.Web.Models.InterviewViewModel
+@{ 
+    var i = 1;
+}
+<div class="tab-pane" id="@Model.ID">
+    <div class="row">
+        <div class="col-xs-4">
+            <div class="box-body no-border">
+                <!-- Interviewer Info -->
+                <table class="table ">
+                    <tbody>
+                        <tr>
+                            <td>@IPM.Web.MultiLanguage.Resource.Account</td>
+                            <td>@Model.Interviewer.Account</td>
+                        </tr>
+                        <tr>
+                            <td>@IPM.Web.MultiLanguage.Resource.Name</td>
+                            <td>@Model.Interviewer.Username</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <!-- /.Interviewer Info -->
+            </div>
+        </div>
+    </div>
+    <!-- Guideline Zone -->
+    <div id="guidelinezone">
+        <div class="box-body table-responsive">
+            <table class="table table-bordered" id="guideline">
+                <tbody id="guidelinebody">
+                    <tr>
+                        <th class="guidelinetitle" colspan="3">Skill</th>
+                        <th>@IPM.Web.MultiLanguage.Resource.CandidateAnswer</th>
+                        <th>@IPM.Web.MultiLanguage.Resource.Mark</th>
+                        <th>@IPM.Web.MultiLanguage.Resource.Note</th>
+                    </tr>
+                    <!-- List each catalog in guideline -->
+                   @if (Model.ListInterviewAnswers != null)
+                   {
+                       foreach (var item1 in Model.ListInterviewAnswers)
+                       {
+                        <tr>
+                            <td class="catalogrank" rowspan="@item1.RowSpan"> @i</td>
+                            <td colspan="3">@item1.Catalog.Name</td>
+                            <td class="point" data-type="select" 
+                                data-maxpoint="@item1.Catalog.MaxPoint" data-pk="@item1.ID">@item1.Mark</td>
+                            <td></td>
+                        </tr>
+                                                    <!-- Load each question in catalog-->
+                           if (item1.ListAnswerQuestions != null)
+                           {
+                               foreach (var item2 in item1.ListAnswerQuestions)
+                               {
+                                <tr>
+                                    <td>@item2.Question.Content</td>
+                                    <td>@item2.Question.Answer</td>
+                                    <td data-name="CandidateAnswer" data-type="text"
+                                        data-pk="@item2.ID" class="candidateanswer">
+                                        @item2.CandidateAnswer
+                                    </td>
+                                    <td></td>
+                                    <td data-name="Comment" data-type="text"
+                                        data-pk="@item2.ID" class="note">
+                                        @item2.Comment
+                                    </td>
+                                </tr>
+                               }
+                           }
+                           i++;
+                       }
+                       i = 1;
+                   }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.Guideline zone-->
+    <!-- Check user -->
+    <div class="box-footer">
+            <div class="record pull-left">
+                <div>@IPM.Web.MultiLanguage.Resource.Recording  </div>
+                @*<div id="timerecording">
+                    00:00
+                </div>*@
+                <div>
+                    <b>@IPM.Web.MultiLanguage.Resource.NotSupportedFunction</b>
+                </div>
+            </div>    
+            <!-- Result zone -->
+            <div class="result pull-left">
+                <div class="form-group">
+                    <div>@IPM.Web.MultiLanguage.Resource.Result</div>
+                    @if (Model.Result == true)
+                    {
+                        <div class="radio" id="radio @Model.ID">
+                            <label>
+                                <input type="radio" name="radio @Model.ID" 
+                                       id="trueradio" value="Pass" checked /> Pass
+                            </label>
+                            <label>
+                                <input type="radio" name="radio @Model.ID" 
+                                       id="falseradio" value="Fail" /> Fail
+                            </label>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="radio" id="radio @Model.ID">
+                            <label>
+                                <input type="radio" name="radio @Model.ID" 
+                                       id="trueradio" value="Pass" /> Pass
+                            </label>
+                            <label>
+                                <input type="radio" name="radio @Model.ID" 
+                                       id="falseradio" value="Fail" checked /> Fail
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <!-- /.Result zone-->
+            <button type="submit" id="updateinfo" data-pk="@Model.ID" class="btn btn-primary pull-right">@IPM.Web.MultiLanguage.Resource.Save</button>
+    </div>
+    <!-- /.Check user -->
+</div>

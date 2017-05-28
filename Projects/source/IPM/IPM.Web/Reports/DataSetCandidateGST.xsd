@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetCandidateGST" targetNamespace="http://tempuri.org/DataSetCandidateGST.xsd" xmlns:mstns="http://tempuri.org/DataSetCandidateGST.xsd" xmlns="http://tempuri.org/DataSetCandidateGST.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetCandidateGST" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetCandidateGST" msprop:Generator_UserDSName="DataSetCandidateGST">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CandidateGSTs" msprop:Generator_TableClassName="CandidateGSTsDataTable" msprop:Generator_TableVarName="tableCandidateGSTs" msprop:Generator_TablePropName="CandidateGSTs" msprop:Generator_RowDeletingName="CandidateGSTsRowDeleting" msprop:Generator_RowChangingName="CandidateGSTsRowChanging" msprop:Generator_RowEvHandlerName="CandidateGSTsRowChangeEventHandler" msprop:Generator_RowDeletedName="CandidateGSTsRowDeleted" msprop:Generator_UserTableName="CandidateGSTs" msprop:Generator_RowChangedName="CandidateGSTsRowChanged" msprop:Generator_RowEvArgName="CandidateGSTsRowChangeEvent" msprop:Generator_RowClassName="CandidateGSTsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="Result" msprop:Generator_ColumnVarNameInTable="columnResult" msprop:Generator_ColumnPropNameInRow="Result" msprop:Generator_ColumnPropNameInTable="ResultColumn" msprop:Generator_UserColumnName="Result" type="xs:string" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:string" minOccurs="0" />
+              <xs:element name="Certificate" msprop:Generator_ColumnVarNameInTable="columnCertificate" msprop:Generator_ColumnPropNameInRow="Certificate" msprop:Generator_ColumnPropNameInTable="CertificateColumn" msprop:Generator_UserColumnName="Certificate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

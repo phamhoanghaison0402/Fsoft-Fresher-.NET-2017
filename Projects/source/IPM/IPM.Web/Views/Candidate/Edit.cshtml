@@ -1,0 +1,237 @@
+﻿@using IPM.Web.MultiLanguage;
+@model IPM.Web.Models.CandidateViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<section class="content-header">
+    <h1>
+        @Resource.EditCandidate
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li>
+            <a href="@Url.Action("Index","Candidate")">
+                @Resource.CandidatesManagement
+            </a>
+        </li>
+        <li class="active">
+            @Resource.Edit
+        </li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("Edit", "Candidate", FormMethod.Post))
+            {
+                <div class="box box-default">
+                    <div class="box-body">
+                        <h3>
+                            @Resource.PersonalInformation
+                        </h3>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.FullName
+                                </label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", tabindex = 1 })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    @Resource.DateOfBirth
+                                </label>
+                                @Html.TextBoxFor(m => m.Birthdate, new
+                               {
+                                   @class = "form-control",
+                                   id = "datepicker",
+                                   tabindex = 3
+                               })
+                                @Html.ValidationMessageFor(model => model.Birthdate, "", new
+                               {
+                                   @class = "text-danger"
+                               })
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    @Resource.Address
+                                </label>
+                                @Html.TextBoxFor(m => m.Address, new { @class = "form-control", tabindex = 5 })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.CandidateEmail
+                                </label>
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", tabindex = 2 })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    @Resource.Phone
+                                </label>
+                                @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", tabindex = 4 })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    @Resource.IdCard
+                                </label>
+                                @Html.TextBoxFor(m => m.IDCard, new { @class = "form-control", tabindex = 6 })
+                                @Html.ValidationMessageFor(model => model.IDCard, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>
+                                    @Html.TextBoxFor(m => m.ConcidentStatus, new
+                                    {
+                                        @class = "form-control",
+                                        @type = "hidden"
+                                    })
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default">
+                    <div class="box-body">
+                        <h3>
+                            @Resource.Education
+                        </h3>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.University
+                                </label>
+                                @Html.TextBoxFor(m => m.University, new { @class = "form-control", tabindex = 7 })
+                                @Html.ValidationMessageFor(model => model.University, "", new
+                           {
+                               @class = "text-danger"
+                           })
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    @Resource.GPA
+                                </label>
+                                @Html.TextBoxFor(m => m.GPA, new { @class = "form-control", tabindex = 9 })
+                                @Html.ValidationMessageFor(model => model.GPA, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.Major
+                                </label>
+                                @Html.TextBoxFor(m => m.Major, new { @class = "form-control", tabindex = 8 })
+                                @Html.ValidationMessageFor(model => model.Major, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default">
+                    <div class="box-body">
+                        <h3>
+                            @Resource.SkillsGroup
+                        </h3>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.SkillsLabel
+                                </label>
+
+                                @*Son - MultiSlect for choose skills*@
+                                <select class="form-control select2" name="SelectSkillID" multiple="multiple" 
+                                        tabindex="9" style="width: 100%;">
+                                    @foreach (var skillCandidate in ViewBag.ListSkillOfCandidate)
+                                    {
+                                        <option selected="selected" value="@skillCandidate.ID">
+                                            @skillCandidate.Name
+                                        </option>
+                                    }
+                                    @foreach (var listSkill in ViewBag.ListSkillNotCandidate)
+                                    {
+                                        <option value="@listSkill.ID">@listSkill.Name</option>
+                                    }
+                                </select>
+                                @Html.ValidationMessageFor(model => model.ListSkill, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.Certification
+                                </label>
+                                <select class="form-control select2" name="SelectCertificateId" multiple="multiple" 
+                                        tabindex="10" style="width: 100%;">
+                                    @foreach (var certificateCandidate in ViewBag.ListCertificateOfCandidate)
+                                    {
+                                        <option selected="selected" value="@certificateCandidate.ID">
+                                            @certificateCandidate.Name
+                                        </option>
+                                    }
+                                    @foreach (var listCertificate in ViewBag.ListCertificateNotCandidate)
+                                    {
+                                        <option value="@listCertificate.ID">@listCertificate.Name</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default">
+                    <div class="box-body">
+                        <h3>
+                            @Resource.ApplyForGroup
+                        </h3>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.Position
+                                </label>
+                                @Html.DropDownListFor(m => m.PositionID, new SelectList(Model.Positions, "ID", "Name"), new { @class = "form-control select2", tabindex = 12 })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>
+                                    @Resource.InterviewAdmin
+                                </label>
+                                @Html.DropDownListFor(m => m.InterviewAdmin.ID,
+                                   new SelectList(Model.InterviewAdmins, "ID", "Account"),
+                                   new { @class = "form-control", tabindex = 13 })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box box-default">
+                    <div class="box-body">
+                        <h3>
+                            @Resource.Documents
+                        </h3>
+                        <div class="col-md-12">
+                            <label>
+                                @Resource.UploadFileLabel
+                            </label>
+                            <input type="file" name="uploadedFiles" value=@Resource.UploadFileBrowser multiple />
+                        </div>
+                    </div>
+                </div>
+                <div class="box-footer clearfix">
+                    <input type="submit" value="@Resource.SaveCandidateButton" class="btn btn-info pull-right" />
+                    <input type="reset" value="@Resource.ResetCandidateButton" class="btn btn-default" />
+                    <a class="btn btn-default" href="@Url.Action("Index", "Candidate")">
+                        @Resource.CancelCandidateButton
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>

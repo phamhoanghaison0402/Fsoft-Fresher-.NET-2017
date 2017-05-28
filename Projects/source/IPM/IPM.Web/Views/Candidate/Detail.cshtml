@@ -1,0 +1,252 @@
+﻿@using IPM.Web.MultiLanguage;
+@model IPM.Model.Models.Candidate
+@{
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+<!-- Content Header (Page header) -->
+<style>
+
+    .mytable{
+        table-layout:fixed;
+    }
+
+    .mytable tr td{
+        padding: 10px;
+    }
+
+    .candidate-info-group {
+        margin-bottom: 15px;
+    }
+
+    .group-header {
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+    } 
+
+    .group-body {
+        padding: 0 15px;
+    }
+
+</style>
+
+<section class="content-header">
+    <h1>
+        @Resource.CandidateProfile
+    </h1>
+    <ol class="breadcrumb">
+        <li>
+            <a href="@Url.Action("Index", "Home")"><i class="fa fa-dashboard"></i>
+                @Resource.Home
+            </a>
+        </li>
+        <li>
+            <a href="@Url.Action("Index", "Candidate")">
+                @Resource.CandidatesManagement
+            </a>
+        </li>
+        <li class="active">
+            @Resource.CandidateProfile
+        </li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    
+    <div class="box box-primary box-body">
+        <div class="row">
+            <div class="box-header">
+                <h3 class="box-title">@Model.Name - @Model.Email </h3>
+                <a class="btn btn-default pull-right" href="@Url.Action("Edit", "Candidate", new {Id = Model.ID})">
+                    @Resource.EditCandidate
+                </a>
+            </div>
+        </div>
+        
+        <div class="row candidate-info-group">
+            <div class="col-sm-12">
+                <h5 class="group-header">
+                    @Resource.CandidateInformation
+                </h5>
+            </div>
+            <div class="col-sm-6">
+                <table class="mytable">
+                    <tr>
+                        <td>@Resource.FullName:</td>
+                        <td>@Model.Name</td>
+                    </tr>
+                    <tr>
+                        <td>@Resource.Birthday:</td>
+                        <td>@Model.Birthdate.ToShortDateString()</td>
+                    </tr>
+                    <tr>
+                        <td>@Resource.Phone:</td>
+                        <td>@Model.Phone</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <table class="mytable">
+                    <tr>
+                        <td>@Resource.IdCard:</td>
+                        <td>@Model.IDCard</td>
+                    </tr>
+                    <tr>
+                        <td>@Resource.Address:</td>
+                        <td>@Model.Address</td>
+                    </tr>
+                    <tr>
+                        <td>@Resource.CandidateEmail:</td>
+                        <td>@Model.Email</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="row candidate-info-group">
+            <div class="col-sm-12">
+                <h5 class="group-header">
+                    @Resource.Education
+                </h5>
+            </div>
+            <div class="col-sm-6">
+                <table class="mytable">
+                    <tr>
+                        <td>@Resource.University:</td>
+                        <td>@Model.University</td>
+                    </tr>
+                    <tr>
+                        <td>@Resource.Major:</td>
+                        <td>@Model.Major</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <table class="mytable">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>@Resource.GPA:</td>
+                        <td>@Model.GPA</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row candidate-info-group">
+            <div class="col-sm-12">
+                <h5 class="group-header">
+                    @Resource.SkillsGroup
+                </h5>
+            </div>
+            <div class="group-body">
+                <div class="col-sm-4">
+                    <label clas="control-label">@Resource.CandidateSkill</label>
+                    <div>
+                        @foreach (var item in Model.CandidateSkills)
+                        {
+                            <p>@item.Skill.Name</p>
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label clas="control-label">@Resource.Certification</label>
+                    <div>
+                        @foreach (var item in Model.CandidateCertificates)
+                        {
+                            <p>@item.Certificate.Name</p>
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label clas="control-label">@Resource.OtherInfo</label>
+                    <div>
+                        <p>@Model.Certificate</p>
+                    </div>
+                </div>                
+            </div>
+        </div>
+
+        <div class="row candidate-info-group">
+            <div class="col-sm-12">
+                <h5 class="group-header">@Resource.Documents</h5>
+            </div>
+
+            <div class="col-sm-12">
+                <ul>
+                @foreach (var item in Model.Documents)
+                {
+                    <li><a href="~/@item.Path" download>@item.Name</a></li>
+                }
+                </ul>
+            </div>
+        </div>
+
+        <div class="row candidate-info-group">
+            <div class="col-md-12">
+                <h5 class="group-header">@Resource.InterviewHistory</h5>
+            </div>
+            <div class="col-sm-12">
+                <div class="box box-default collapsed-box">
+                    <div class="box-header with-border">
+                        <div class="box-tools pull-left">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <h3 class="box-title">FRESHER 03/2017</h3>
+                    </div>
+                    <div class="box-body" style="display: none;">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#home">Round 1</a></li>
+                            <li><a data-toggle="tab" href="#menu1">Round 2</a></li>
+                            <li><a data-toggle="tab" href="#menu2">Round 3</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div id="home" class="tab-pane fade in active">
+                                <p>Under construction!</p>
+                            </div>
+                            <div id="menu1" class="tab-pane fade">
+                                <p>Under construction!</p>
+                            </div>
+                            <div id="menu2" class="tab-pane fade">
+                                <p>Under construction!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="box box-default collapsed-box">
+                    <div class="box-header with-border">
+                        <div class="box-tools pull-left">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <h3 class="box-title">FRESHER 08/2016</h3>
+                    </div>
+                    <div class="box-body" style="display: none;">
+                        Underconstruction.
+                    </div>
+                </div>
+                <div class="box box-default collapsed-box">
+                    <div class="box-header with-border">
+                        <div class="box-tools pull-left">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                        <h3 class="box-title">FRESHER 03/2016</h3>
+                    </div>
+                    <div class="box-body" style="display: none;">
+                        Underconstruction.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /.content -->

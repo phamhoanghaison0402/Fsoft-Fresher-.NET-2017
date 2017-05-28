@@ -1,0 +1,134 @@
+﻿@model IPM.Model.Models.InterviewProcess
+@{
+    ViewBag.Title = @IPM.Web.MultiLanguage.Resource.DetailInterviewProcess;
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.ManagementInterviewProcess
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> @IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li class="active"> <a href="@Url.Action("Index","InterviewProcess")">@IPM.Web.MultiLanguage.Resource.ManagementInterviewProcess</a></li>
+        <li class="active">@IPM.Web.MultiLanguage.Resource.DetailInterviewProcess</li>
+    </ol>
+</section>
+<section class="content">
+    <form class="box box-primary" id="EditProcess">
+        <div class="box-header with-border">
+            <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.DetailInterviewProcess</h3>
+        </div>
+        <!-- form start -->
+        <div role="form">
+            <div class="box-body">
+                <div class="row">
+                    <!-- Information interview process widgets start -->
+                    <div class="col-md-12">
+                        <div class="box box-default">
+                            <div class="box-header with-border">
+                                <div class="box-tools pull-left">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.InformationInterviewProcess</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="display: block;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-6" id="ProcessNameForm">
+                                            <label for="ProcessName" class="col-sm-2 control-label">@IPM.Web.MultiLanguage.Resource.ProcessName</label>
+                                            <div class="col-sm-10">
+                                                <input name="ProcessName" type="text" class="form-control" id="ProcessName" tabindex="0" value="@Model.ProcessName" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label for="Status" class="col-sm-2 control-label">@IPM.Web.MultiLanguage.Resource.Status</label>
+                                            <div class="col-sm-10">
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" class="minimal-red" id="Status" tabindex="1" value="@Model.Active" disabled> @IPM.Web.MultiLanguage.Resource.Active
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="col-md-6">
+                                            <label for="Position" class="col-sm-2 control-label"> @IPM.Web.MultiLanguage.Resource.Position</label>
+                                            <div class="col-sm-10">
+                                                <input name="Position" type="text" class="form-control" id="Position" tabindex="2" value="@Model.Position.Name" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6" id="StartDateForm">
+                                            <label for="StartDate" class="col-sm-2 control-label">@IPM.Web.MultiLanguage.Resource.StartDate</label>
+                                            <div class="col-sm-10">
+                                                <input name="StartDate" type="text" class="form-control pull-right" tabindex="3" value="@Model.StartDate.ToString("dd/MM/yyyy")" disabled />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- Information interview process widgets end -->
+
+                    <!-- Interview round widgets start -->
+                    <div class="col-md-12">
+                        <div class="box box-default">
+                            <div class="box-header with-border">
+                                <div class="box-tools pull-left">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                                        <i class="fa fa-minus"></i>
+                                    </button>
+                                </div>
+                                <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.InterviewRound</h3>
+                            </div>
+                            <!-- /.box-header -->
+                            <div class="box-body" style="display: block;">
+                                <table id="interviewRoundTable" class="table table-bordered">
+                                    <tr>
+                                        <th style="width: 10px">ID</th>
+                                        <th>@IPM.Web.MultiLanguage.Resource.RoundName</th>
+                                        <th>@IPM.Web.MultiLanguage.Resource.Description</th>
+                                        <th>@IPM.Web.MultiLanguage.Resource.Action</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.box-body -->
+    </form>
+</section>
+<div id="interviewRoundDetailInProcessModal" class="modal fade" role="dialog">
+    <div id="interviewRoundDetailInProcessContainer" class="modal-dialog">
+    </div>
+</div>
+<script>
+    var interviewProcess = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.interviewProcess));
+    var listRoundIn = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.ListRoundInProcess));
+
+
+    //string to append a row to table
+    function createAppendString(data){
+        var appendString = '<tr id='+data.ID+'><td>'+data.ID+'</td> <td class="text-left">'+data.RoundName+'</td> <td class="text-left">'+ data.Description +
+                    '<td style="width:120px">'+
+                                                '<div class="btn-group">'+
+                        '<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">'+
+                          '<i class="fa fa-cogs"></i>'+
+                        '</button>'+
+                                                    '<ul class="dropdown-menu" role="menu">'+
+                                                    '<li><a class="detailRoundInProcess" data-id="'+data.ID+'"><i class="fa fa-eye"></i>@IPM.Web.MultiLanguage.Resource.Detail</a></li>'+
+                                                    '</ul>'+
+                                                '</div>'+
+                                            '</td>';
+        return appendString;
+    }
+</script>
+<script src="~/Scripts/InterviewProcess/detail.js"></script>

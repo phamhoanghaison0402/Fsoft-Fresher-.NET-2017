@@ -1,0 +1,268 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<IPM.Model.Models.CatalogQuestion>
+@{
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+    ViewBag.Title = @IPM.Web.MultiLanguage.Resource.ManagementSkills;
+    var z = 1;
+}
+
+<!-- Content Header (Page header) -->
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link rel="stylesheet" href="~/Content/bootstrap-select.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="~/Scripts/bootstrap-select.min.js"></script>
+
+
+<style>
+    .class_table_catalog tr td{
+        text-align: left;
+        padding: 10px;
+        font-size: large;
+    }
+</style>
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.ManagementCatalog - @IPM.Web.MultiLanguage.Resource.Question
+        
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> @IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li><a href="@Url.Action("Index","Catalog")"><i class="fa fa-dashboard"></i> @IPM.Web.MultiLanguage.Resource.ManagementCatalog</a></li>
+        <li class="active">@IPM.Web.MultiLanguage.Resource.Question</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <input type="hidden" id="idcatalog" value="@ViewBag.catalog.ID" />
+            <div class="box">
+                <table class="class_table_catalog">
+                    <tr>
+                        <td>@IPM.Web.MultiLanguage.Resource.CatalogID</td>
+                        <td>@ViewBag.catalog.ID</td>
+                    </tr>
+                    <tr>
+                        <td>@IPM.Web.MultiLanguage.Resource.CatalogName</td>
+                        <td>@ViewBag.catalog.Name</td>
+                    </tr>
+                    <tr>
+                        <td>@IPM.Web.MultiLanguage.Resource.MaxPoint</td>
+                        <td>@ViewBag.catalog.MaxPoint</td>
+                    </tr>
+                </table>
+                
+                <br /><br />
+
+                <div class="box-header with-border">
+                    <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.Question</h3>
+                    <div class="box-tools">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#AddQuestionModal">
+                            <i class="fa fa-plus"></i>
+                            @IPM.Web.MultiLanguage.Resource.AddQuestion
+                        </button>
+                    </div>
+                </div>
+
+
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>#</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Content</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Answer</th>
+                            <th>@IPM.Web.MultiLanguage.Resource.Action</th>
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align: left;">@z</td>
+                                <td style="text-align: left;">@item.Question.Content</td>
+                                <td style="text-align: left;">@item.Question.Answer</td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="fa fa-cogs"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+           
+                                            <li><a href="#" onclick="return PopupDelete('@item.ID');"><i class="fa fa-trash"></i>@IPM.Web.MultiLanguage.Resource.Delete</a></li>
+                                          
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            z++;
+                        }
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <div class="pull-left" style="padding-top:20px">
+                        <h3 class="panel-title">@IPM.Web.MultiLanguage.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount </h3>
+                    </div>
+                    <div class="pull-right">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+
+
+<div class="modal fade" id="AddQuestionModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@IPM.Web.MultiLanguage.Resource.AddQuestion</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <label class="control-label col-sm-3">@IPM.Web.MultiLanguage.Resource.Question</label>
+                        <div class="col-sm-6">
+                            <select  class="selectpicker" data-live-search="true" id="idaddquestion">
+                               @for(int i = 0; i < ViewBag.AvailableQuestion.Count; i++)
+                               {
+                                   <option value="@ViewBag.AvailableQuestion[i].ID">@ViewBag.AvailableQuestion[i].Content</option>
+                               }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default" id="AddQuestion">@IPM.Web.MultiLanguage.Resource.Add</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">@IPM.Web.MultiLanguage.Resource.Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="DeleteQuestionModal" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">@IPM.Web.MultiLanguage.Resource.Warning</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="deletecatalogquestionid">
+                    </div>
+                </div>
+                <div class="row">
+                    <h3 class="text-center">@IPM.Web.MultiLanguage.Resource.WarningDelete</h3>
+                </div>
+                <br /><br />
+                <div class="row">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" id="DeleteQuestion">@IPM.Web.MultiLanguage.Resource.Delete</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="text-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">@IPM.Web.MultiLanguage.Resource.Cancel</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+    $(function () {
+        $("#filter_div").change(function () {
+            $.get("@Url.Action("Index","Skill")",
+                { name: $('#skillName').val() },
+                function (data) {
+                     //do some thing with the response, in data variable.
+              });
+        });
+
+        $("#AddQuestion").click(function () {
+            var idquestion = $('#idaddquestion').val();
+            var idcatalog = $('#idcatalog').val();
+            $('#AddQuestionModal').modal('hide');
+            AddQuestion(idcatalog, idquestion);
+        });
+
+        
+
+        $("#DeleteQuestion").click(function () {
+            $('#DeleteQuestionModal').modal('hide');
+            var id = $('#deletecatalogquestionid').val();
+            DeleteQuestion(id);
+        });
+
+        function AddQuestion(idcatalog, idquestion) {
+            $.ajax({
+                url: "/Catalog/AddQuestion",
+                type: "POST",
+                data: { idcatalog: idcatalog, idquestion: idquestion },
+                success: function (result) {
+                    window.location = '/Catalog/Question?id=' + idcatalog;
+                },
+                error: function (result) {
+                    alert("Error: Internet");
+                }
+            });
+        }
+
+
+        function DeleteQuestion(id) {
+            var idcatalog = $('#idcatalog').val();
+            $.ajax({
+                url: "/Catalog/DeleteQuestion",
+                type: "POST",
+                data: { id: id},
+                success: function (result) {
+                    window.location = '/Catalog/Question?id=' + idcatalog;
+                },
+                error: function (result) {
+                    alert("Error: Internet");
+                }
+            });
+        }
+    });
+
+  
+
+    function PopupDelete(id) {
+        $('#deletecatalogquestionid').val(id);
+        $('#DeleteQuestionModal').modal('show');
+    }
+
+
+</script>

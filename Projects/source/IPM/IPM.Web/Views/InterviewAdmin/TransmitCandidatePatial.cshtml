@@ -1,0 +1,59 @@
+﻿
+<link href="~/Content/Css/InterviewAdmin/InterviewAdmin.css" rel="stylesheet" />
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">@IPM.Web.MultiLanguage.Resource.TransmitCandidate</h4>
+</div>
+
+@using (Html.BeginForm("TransmitCandidate", "InterviewAdmin",new { candidateId = ViewBag.CandidateSelected.ID }, FormMethod.Post, 
+    new { @class = "modal-form form-horizontal" }))
+{
+    <div class="modal-body">
+        <div class="row">
+            <label>@IPM.Web.MultiLanguage.Resource.CandidateName: @ViewBag.CandidateSelected.Name</label>
+            @foreach (var item1 in ViewBag.interviews)
+            {
+                if (item1.Result == null)
+                {
+                    <div class="form-group  col-md-offset-2 col-md-8">
+                        <input value="@item1.ID" name="interviewId" hidden />
+                        <label class="col-md-3 control-label">@IPM.Web.MultiLanguage.Resource.InterviewAdmin</label>
+                        <div class="col-md-9">
+                            <select class="form-control" id="round1" name="interviewAdminId">
+                                @foreach (var item in ViewBag.listInterviewAdmins)
+                                {
+                                    if (item.ID == ViewBag.CandidateSelected.InterviewAdminID)
+                                    {
+                                        <option value="@item.ID" selected>@item.Account</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@item.ID">@item.Account</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="text-align: center;">
+                        <button type="submit" class="btn btn-default" id="btnTrasnmitCandidate">@IPM.Web.MultiLanguage.Resource.Update</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">@IPM.Web.MultiLanguage.Resource.CancelTransmit</button>
+                    </div>
+                    break;
+                }
+            }
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        $('#btn-dismiss').click(function () {
+            $('#modal-container').modal('hide');
+        });
+
+        $('#modal-container').on("keydown", function (e) {
+            if (e.which == 13) {
+                $('#modal-container').modal('hide');
+            }
+        });
+    });
+</script>

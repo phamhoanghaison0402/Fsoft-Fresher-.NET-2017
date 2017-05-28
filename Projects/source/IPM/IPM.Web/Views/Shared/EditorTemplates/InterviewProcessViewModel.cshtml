@@ -1,0 +1,40 @@
+﻿@model IPM.Web.Models.InterviewProcessViewModel
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProcessName, new { @class = "" })
+            @Html.TextBoxFor(model => model.ProcessName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProcessName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PositionID, new { @class = "" })
+            @Html.DropDownListFor(x => x.PositionID, (SelectList)ViewBag.ListPositionName, new { @class = "form-control select2", @id = "position" })
+            @Html.ValidationMessageFor(model => model.PositionID, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, new { @class = "" })
+            @Html.DropDownListFor(x => x.Active, (SelectList)ViewBag.Active, new { @class = "form-control select2" })
+            @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+        </div>
+        <!-- /.form-group -->
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, new { @class = "" })
+            <div class="input-group date">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", @id = "datepicker" })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+</div>

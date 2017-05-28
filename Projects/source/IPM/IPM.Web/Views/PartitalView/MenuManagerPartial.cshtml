@@ -1,0 +1,133 @@
+﻿ <!-- Left side column. contains the logo and sidebar -->
+<aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+        <!-- Sidebar user panel -->
+        <div class="user-panel">
+            <div class="pull-left image">
+                <img src="~/Content/dist/img/user.png" class="img-circle" alt="User Image">
+            </div>
+            <div class="pull-left info">
+                <p>Hi!</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+      
+        <!-- sidebar menu: : style can be found in sidebar.less -->
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+
+            <li class="treeview">
+                <a href="@Url.Action("Index","Skill")">
+                    <i class="fa fa-book"></i> <span>@IPM.Web.MultiLanguage.Resource.ManagementSkills</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","Position")">
+                    <i class="fa fa-industry"></i> <span>@IPM.Web.MultiLanguage.Resource.ManagePositions</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","InterviewRound")">
+                    <i class="fa fa-spinner"></i> <span>@IPM.Web.MultiLanguage.Resource.ManagementInterviewRound</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","InterviewProcess")">
+                    <i class="fa fa-gears"></i> <span>@IPM.Web.MultiLanguage.Resource.ManagementInterviewProcess</span>
+                </a>
+
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","Candidate")">
+                    <i class="fa fa-users"></i> <span>@IPM.Web.MultiLanguage.Resource.ManagementCandidate</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","User")">
+                    <i class="fa fa-user"></i> <span>@IPM.Web.MultiLanguage.Resource.ManagementUser</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","InterviewAdmin")">
+                    <i class="fa fa-user-secret"></i> <span>@IPM.Web.MultiLanguage.Resource.ManagementInterviewAdmin</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","Interviewer")">
+                    <i class="fa  fa-user-md"></i> <span>@IPM.Web.MultiLanguage.Resource.InterviewerManagement</span>
+                </a>
+            </li>
+            
+            <li>
+                <a href="@Url.Action("Index","AssignCandidates")">
+                    <i class="fa  fa-user-md"></i> <span>@IPM.Web.MultiLanguage.Resource.AssignCandidates</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","MeetingRequest")">
+                    <i class="fa  fa-clock-o"></i> <span>@IPM.Web.MultiLanguage.Resource.MeetingRequest</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("Index","Interview")">
+                    <i class="fa fa-comments"></i> <span>@IPM.Web.MultiLanguage.Resource.Interview</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="@Url.Action("InterviewResults","Interview")">
+                    <i class="fa fa-bullhorn"></i> <span>@IPM.Web.MultiLanguage.Resource.InterviewResultsManagement</span>
+                </a>
+            </li>
+            
+          
+            <li>
+                <a href="@Url.Action("Index","Calendar")">
+                    <i class="fa fa-calendar"></i> <span>@IPM.Web.MultiLanguage.Resource.Calendar</span>
+                </a>
+            </li>
+            
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-fw fa-bar-chart"></i>
+                    <span>@IPM.Web.MultiLanguage.Resource.GuidelineInterviewManagement</span>
+                    <span class="pull-right-container">
+                    </span>
+                </a>
+                <ul class="treeview-menu" style="display: none;">
+                    <li><a href="@Url.Action("Index","Questions")"><i class="fa fa-circle-o"></i>@IPM.Web.MultiLanguage.Resource.ManagementQuestions</a></li>
+                    <li><a href="@Url.Action("Index","Catalog")"><i class="fa fa-circle-o"></i>@IPM.Web.MultiLanguage.Resource.ManagementCatalog</a></li>
+                    <li><a href="@Url.Action("Index","Guideline")"><i class="fa fa-circle-o"></i>@IPM.Web.MultiLanguage.Resource.ManagementGuideline</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-fw fa-bar-chart"></i>
+                    <span>@IPM.Web.MultiLanguage.Resource.Report</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" style="display: none;">
+                    <li><a href="@Url.Action("ReportCandidates","Report")"><i class="fa fa-circle-o"></i>@IPM.Web.MultiLanguage.Resource.Candidates</a></li>
+                    <li><a href="@Url.Action("ReportInterviewers","Report")"><i class="fa fa-circle-o"></i>@IPM.Web.MultiLanguage.Resource.Interviewer</a></li>
+                    <li><a href="@Url.Action("ReportCandidatesGst","Report")"><i class="fa fa-circle-o"></i>@IPM.Web.MultiLanguage.Resource.CandidatesGST</a></li>
+                    <li><a href="@Url.Action("ReportSkillsandCareers","Report")"><i class="fa fa-circle-o"></i>@IPM.Web.MultiLanguage.Resource.ReportSkillAndCareers</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+    <!-- /.sidebar -->
+</aside>

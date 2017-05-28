@@ -1,0 +1,59 @@
+﻿@model IPM.Web.Models.MeetingRequestViewModel
+
+<div class="form-group">
+    <label class="control-label col-sm-1" for="InterviewerAccounts">@IPM.Web.MultiLanguage.Resource.ToInterviewers:</label>
+    <div class="col-sm-8">
+        @Html.HiddenFor(model => model.AppointmentID)
+        @Html.TextBoxFor(model => model.InterviewerEmail, new { @class = "form-control", placeholder = "Enter Interviewer Emails, seperated by semi-colon(;)." })
+        @Html.ValidationMessageFor(model => model.InterviewerEmail, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-sm-1" for="Subject">@IPM.Web.MultiLanguage.Resource.Subject:</label>
+    <div class="col-sm-8">
+        @Html.TextBoxFor(model => model.Subject, new { @class = "form-control", placeholder = "Enter Subject." })
+        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-sm-1" for="RoomID">@IPM.Web.MultiLanguage.Resource.ChooseRoom:</label>
+    <div class="col-sm-8">
+        @Html.DropDownListFor(model => model.RoomID, (SelectList)ViewBag.ListRoom, "Choose Room", new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.RoomID, "", new { @class = "text-danger" })       
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-sm-1" for="Starttime">@IPM.Web.MultiLanguage.Resource.StartTime:</label>
+    <div class="col-sm-8">
+        @Html.TextBoxFor(model => model.StartDate, new { @class = "form-control", @type = "datetime-local", @placeholder = "Enter Start Time", @id="Starttime", @Value = (Model!=null)?Model.StartDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss") : "" })
+        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-sm-1" for="Endtime">@IPM.Web.MultiLanguage.Resource.EndTime:</label>
+    <div class="col-sm-8">
+        @Html.TextBoxFor(model => model.EndDate, new { @class = "form-control", @type = "datetime-local", @placeholder = "Enter End Time", @id="Endtime", @Value = (Model != null) ? Model.EndDate.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss") : "" })
+        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group">
+    <label class="control-label col-sm-1" for="Emailcontent">@IPM.Web.MultiLanguage.Resource.EmailContent:</label>
+    <div class="col-sm-8">
+        @Html.TextAreaFor(model => model.EmailContent, new { @class = "form-control", @placeholder = "Enter Email Content" })
+        @Html.ValidationMessageFor(model => model.EmailContent, "", new { @class = "text-danger" })
+    </div>
+</div>
+<div>
+        
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-1"> </label>
+    <div class="col-sm-8">
+        <button type="submit" class="btn btn-info"> @IPM.Web.MultiLanguage.Resource.Send </button>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+﻿@model IPM.Web.Models.InterviewListViewModel
+
+@{
+    ViewBag.Title = "InterviewProcess";
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+    <!-- i for ID of Catalog, r for round  -->
+    var r = 1;
+}
+
+<link href="~/Content/Css/Interview.css" rel="stylesheet" />
+<link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet" />
+@section Scripts
+{
+    <script src="~/Scripts/Interview/editable.js"></script>
+    <script src="~/Scripts/Interview/InterviewJS.js"></script>
+    <script>
+    </script>
+}
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.InterviewProcess
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li><a href="#">@IPM.Web.MultiLanguage.Resource.Interview</a></li>
+        <li class="active">@IPM.Web.MultiLanguage.Resource.InterviewResults</li>
+    </ol>
+</section>
+<!-- Content Header (Page header) -->
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-9">
+            <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs">
+                    @foreach (var item in Model.Interviews)
+                    {
+                        <li><a href="#@item.ID" data-toggle="tab">Round @r</a></li>
+                        r++;
+                    }
+                </ul>
+                <!-- Tab Content -->
+                <div id="tab-content" class="tab-content">
+                    <!-- Round info -->
+                    @foreach (var item in Model.Interviews)
+                    {
+                        <div class="tab-pane" id="@item.ID">
+                            <form>
+                                @Html.Partial("~/Views/Interview/Partial/EditGuideline.cshtml", item)
+                            </form>
+                        </div>
+                        r = 1;
+                    }
+                    <!-- /.Round info-->
+                </div>
+                <!-- /.Tab Content -->
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <!-- Candidate Info -->
+            <div class="box candidateinfo">
+                <div class="box-header">
+                    <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.CandidateInformation</h3>
+                </div>
+                <div style="height: 50px;"></div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <td class="title">@IPM.Web.MultiLanguage.Resource.Name</td>
+                                <td>@Model.Candidate.Name</td>
+                            </tr>
+                            <tr>
+                                <td class="title">@IPM.Web.MultiLanguage.Resource.Position</td>
+                                <td>@Model.Candidate.PositionID</td>
+                            </tr>
+                            <tr>
+                                <td class="title">@IPM.Web.MultiLanguage.Resource.SkillName</td>
+                                <td>
+                                    @foreach (var item in Model.Candidate.CandidateCertificates)
+                                    {
+                                        @item.Certificate.Name;
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">@IPM.Web.MultiLanguage.Resource.University</td>
+                                <td>@Model.Candidate.University</td>
+                            </tr>
+                            <tr>
+                                <td class="title">Certificate</td>
+                                <td>
+                                    @foreach (var item in Model.Candidate.CandidateSkills)
+                                    {
+                                        @item.Skill.Name;
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="title">GPA</td>
+                                <td>@Model.Candidate.GPA</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.Candidate Info -->
+            <div style="height: 50px;"></div>
+            <!-- Round Results-->
+            <div class="box">
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr>
+                                <th>@IPM.Web.MultiLanguage.Resource.Round</th>
+                                <th>@IPM.Web.MultiLanguage.Resource.Result</th>
+                            </tr>
+                            @foreach (var item in Model.Interviews)
+                            {
+                                <tr>
+                                    <td>@r</td>
+                                    @if (item.Result == true)
+                                    {
+                                        <td>Pass</td>
+                                    }
+                                    else if (item.Result == false)
+                                    {
+                                        <td>Fail</td>
+                                    }
+                                    else
+                                    {
+                                        <td>Unknown</td>
+                                    }
+                                </tr>
+                                r++;
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- /.Round Results-->
+        </div>
+    </div>
+</section>
+<!-- /.Main content -->

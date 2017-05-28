@@ -1,0 +1,33 @@
+﻿tr td {
+    text-align:left;
+}
+
+.candidateinfo tr td.title{
+    text-align:center;
+}
+.box-footer button{
+    margin-left: 10px;
+}
+.guidelinetitle {
+    width:60%;
+}
+.catalogrank {
+    width:5%;
+}
+.result {
+    margin: 0 10%;
+}
+.timerecording {
+    font-size: 20px; 
+    font-style: oblique;
+}
+.radio {
+    display: inline-block;
+}
+.questioncontent {
+    width:25%;
+}
+td {
+    max-width:250px;
+    word-wrap: break-word;
+}

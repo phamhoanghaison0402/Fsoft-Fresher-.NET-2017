@@ -1,0 +1,64 @@
+﻿@model IPM.Web.Models.CandidateViewModel
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "" })
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control", tabindex = 1 })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Birthdate, new { @class = "" })
+            <div class="input-group date">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                </div>
+                @Html.TextBoxFor(model => model.Birthdate, DateTime.Now.ToString("dd/MM/yyyy"), new { @class = "form-control", @id = "datepicker", tabindex = 3 })
+
+
+            </div>
+            @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone, new { @class = "" })
+            @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", tabindex = 5 })
+            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+        </div>
+
+        <!-- /.form-group -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-6">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, new { @class = "" })
+            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", tabindex = 2 })
+            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.University, new { @class = "" })
+            @Html.TextBoxFor(model => model.University, new { @class = "form-control", tabindex = 4 })
+            @Html.ValidationMessageFor(model => model.University, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PositionID, new { @class = "" })
+            @Html.DropDownListFor(m => m.PositionID, new SelectList(Model.Positions, "ID", "Name"), new { @class = "form-control", tabindex = 6 })
+            @Html.ValidationMessageFor(model => model.PositionID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>
+                @IPM.Web.MultiLanguage.Resource.UploadFileLabel
+            </label>
+            <input type="file" name="uploadedFiles" value=@IPM.Web.MultiLanguage.Resource.UploadFileBrowser multiple />
+            @*<label>
+                <i>@IPM.Web.MultiLanguage.Resource.CoincidenceStatus: </i>
+            </label>*@
+        </div>
+    </div>
+    <!-- /.col -->
+</div>

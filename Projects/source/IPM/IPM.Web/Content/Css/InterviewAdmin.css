@@ -1,0 +1,28 @@
+﻿
+/*--*/
+
+#ListInterviewAdmin .div_Search {
+    margin-bottom: 10px;
+    padding-right: 10px;
+}
+
+#ListInterviewAdmin .div_ViewItem {
+    padding-top: 5px;
+}
+
+#ListInterviewAdmin th,td {
+    text-align: center;
+}
+
+#TransmitModal {
+    margin-top: 20px;
+}
+
+#TransmitModal label{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#TransmitModal p{
+    padding-left: 20px;
+}

@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = IPM.Web.MultiLanguage.Resource.Home;
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+
+@if (Session["Account"] == null)
+{
+    <nav class="navbar navbar-static-top">
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav" style="float:right">
+                <li class="dropdown messages-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-language"></i>  <span class="hidden-xs">@IPM.Web.MultiLanguage.Resource.Language</span>
+                    </a>
+                    <ul class="dropdown-menu" style="height:85px; width:20px;">
+                        <li>
+                            <ul class="menu">
+                                <li>
+                                    @foreach (var i in IPM.Common.SiteLanguages.AvailableLanguages)
+                                    {
+                                        @Html.ActionLink(i.LangFullName, "ChangeLanguage", "Home", new { lang = i.LangCultureName, returnUrl = HttpContext.Current.Request.Url.AbsoluteUri }, null)
+                                    }
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <body class="hold-transition login-page">
+        <div class="login-box">
+            <div class="login-logo">
+                <b>@IPM.Web.MultiLanguage.Resource.Login</b>
+            </div>
+            <!-- /.login-logo -->
+            <div class="login-box-body">
+                @*<p class="login-box-msg">Sign in to start your session</p>*@
+                <form action="/Home/Login" method="post">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" placeholder="Account" name="account">
+                        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                        @if (@TempData["notify1"] != null)
+                        {
+                            <a class="notify" style="color:red">@Html.Raw(@TempData["notify1"])</a>
+                        }
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input type="password" class="form-control" placeholder="Password" name="password">
+                        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                        @if (@TempData["notify2"] != null)
+                        {
+                            <a class="notify" style="color:red">@Html.Raw(@TempData["notify2"])</a>
+                        }
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="checkbox icheck">
+                                <label>
+                                    <input type="checkbox"> @IPM.Web.MultiLanguage.Resource.RememberMe
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-xs-4">
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">@IPM.Web.MultiLanguage.Resource.Login</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    @if (@TempData["notify"] != null)
+                    {
+                        <a class="notify" style="color:red">@Html.Raw(@TempData["notify"])</a>
+                    }
+                </form>
+            </div>
+            <!-- /.login-box-body -->
+        </div>
+        <!-- /.login-box -->
+        <!-- iCheck -->
+        <script src="~/Content/plugins/iCheck/icheck.min.js"></script>
+        <script>
+            $(function () {
+                $('input').iCheck({
+                    checkboxClass: 'icheckbox_square-blue',
+                    radioClass: 'iradio_square-blue',
+                    increaseArea: '20%' // optional
+                });
+            });
+        </script>
+    </body>
+}
+else
+{
+    @section scripts
+{
+        <link href="~/Content/plugins/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+        <link href="~/Content/plugins/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print" />
+        <script src="~/Scripts/modernizr-2.6.2.js"></script>
+        <script src="~/Content/plugins/select2/select2.min.js"></script>
+        <script src="~/Content/plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="~/Content/plugins/daterangepicker/daterangepicker.js"></script>
+        <script src="~/Content/plugins/iCheck/icheck.js"></script>
+        <script src="~/Content/plugins/colorpicker/bootstrap-colorpicker.js"></script>
+        <script src="~/Content/plugins/timepicker/bootstrap-timepicker.js"></script>
+        <script src="~/Scripts/bootbox.min.js"></script>
+        <script src="~/Scripts/jquery.validate.min.js"></script>
+        <script src="~/Scripts/bootstrap.js"></script>
+        <script src="~/Content/plugins/jQueryUI/jquery-ui.min.js"></script>
+        <script src="~/Content/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+        <script src="~/Content/plugins/fastclick/fastclick.js"></script>
+        <script src="~/Content/dist/js/app.min.js"></script>
+        <script src="~/Scripts/lib/moment.min.js"></script>
+        <script src="~/Content/plugins/fullcalendar/fullcalendar.min.js"></script>
+        <script src="~/Scripts/Calendar/JsCalendar.js"></script>
+        <style>
+            .error {
+                color: red;
+            }
+        </style>
+    }
+    <section class="content-header">
+        <h1>
+            Calendar
+        </h1>
+    </section>
+    <div style="width:100%; height:10px; border-bottom:1px solid"></div>
+    <div id="icon_loadingdata" style="position: fixed;margin-top: 20%;margin-left: 40%;z-index:1000;">
+        <i class="fa fa-spinner fa-spin" style="font-size:100px"></i>
+    </div>
+    <div id="calendar"></div>
+
+    <!--Modal-->
+    <div id="modalCalendar" class="modal">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Calendar</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="EventForm" class="form-horizontal">
+                        <!-- /.row -->
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-md-12">
+                                <div class="col-md-12">
+                                    <input type="hidden" id="eventID">
+                                    <div class="form-group" id="hideOrganizer" style="display:none;">
+                                        <label class="control-label col-sm-3" for="">Organizer :</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="txt_Organizer" placeholder="Organizer" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="">Event Title:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="Title" id="txt_eventTitle" placeholder="Title here">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="">Location Title:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" name="Location" id="txt_Location" placeholder="Location here">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="">Start Date:</label>
+                                        <div class="col-sm-9">
+                                            <input type="datetime-local" class="form-control" name="StartDate" id="txt_StartDate">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="">End Date:</label>
+                                        <div class="col-sm-9">
+                                            <input type="datetime-local" class="form-control" name="EndDate" id="txt_EndDate">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3" for="">Body:</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" rows="5" id="txt_Body"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.col -->
+                            </div>
+                        </div>
+                        <!-- /.row -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnSaveData" class="btn btn-primary">Save Event</button>
+                    <button type="button" id="btnPopupCancel" data-dismiss="modal" class="btn">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,1083 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Action" xml:space="preserve">
+    <value>Action</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AddSkillHeader" xml:space="preserve">
+    <value>ADD SKILL</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CreateInterviewProcess" xml:space="preserve">
+    <value>Create Interview Process</value>
+  </data>
+  <data name="CreatePosition" xml:space="preserve">
+    <value>Create Position</value>
+  </data>
+  <data name="CreateSkill" xml:space="preserve">
+    <value>Create Skill</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DeleteSkill" xml:space="preserve">
+    <value>Delete Skill</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Detail" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="EditSkill" xml:space="preserve">
+    <value>Edit Skill</value>
+  </data>
+  <data name="EditSkillHeader" xml:space="preserve">
+    <value>UPDATE SKILL</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full name</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="InformationInterviewProcess" xml:space="preserve">
+    <value>Information interview process</value>
+  </data>
+  <data name="InterviewRound" xml:space="preserve">
+    <value>Interview Round</value>
+  </data>
+  <data name="IPM" xml:space="preserve">
+    <value>System IPM</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="ListCandidate" xml:space="preserve">
+    <value>List candidate</value>
+  </data>
+  <data name="ListInterviewProcess" xml:space="preserve">
+    <value>List Interview Process</value>
+  </data>
+  <data name="ListPositions" xml:space="preserve">
+    <value>List Position</value>
+  </data>
+  <data name="ListSkills" xml:space="preserve">
+    <value>List Skill</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="ManagementCalendar" xml:space="preserve">
+    <value>Management Calendar</value>
+  </data>
+  <data name="ManagementInterviewProcess" xml:space="preserve">
+    <value>Management Interview Process</value>
+  </data>
+  <data name="ManagementSkills" xml:space="preserve">
+    <value>Management Skill</value>
+  </data>
+  <data name="ManagePositions" xml:space="preserve">
+    <value>Manage Position</value>
+  </data>
+  <data name="NameRange" xml:space="preserve">
+    <value>Must be between 10 and  20</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Page" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="Position" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="ProcessName" xml:space="preserve">
+    <value>Process Name</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Remember Me</value>
+  </data>
+  <data name="RoundName" xml:space="preserve">
+    <value>Round Name</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="Signout" xml:space="preserve">
+    <value>Sign out</value>
+  </data>
+  <data name="SkillName" xml:space="preserve">
+    <value>Skill Name</value>
+  </data>
+  <data name="SkillNameRequired" xml:space="preserve">
+    <value>Skill name is required</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="EditInterviewProcess" xml:space="preserve">
+    <value>Edit Interview Process</value>
+  </data>
+  <data name="UpdateSkill" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>WARNING</value>
+  </data>
+  <data name="WarningDelete" xml:space="preserve">
+    <value>Are you sure to delete it ?</value>
+  </data>
+  <data name="AddPositionlHeader" xml:space="preserve">
+    <value>ADD POSITION</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
+  <data name="EditPositionHeader" xml:space="preserve">
+    <value>EDIT POSITION</value>
+  </data>
+  <data name="PositionName" xml:space="preserve">
+    <value>Position Name</value>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="Account" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="Birthday" xml:space="preserve">
+    <value>Birthday</value>
+  </data>
+  <data name="CancelTransmit" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AddProcessSuccess" xml:space="preserve">
+    <value>Add interview process success</value>
+  </data>
+  <data name="DetailInterviewProcess" xml:space="preserve">
+    <value>Detail Interview Process</value>
+  </data>
+  <data name="ListInterviewAdmin" xml:space="preserve">
+    <value>List interview admin</value>
+  </data>
+  <data name="ManagementInterviewAdmin" xml:space="preserve">
+    <value>Management Interview Admin</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="Round1" xml:space="preserve">
+    <value>Round 1</value>
+  </data>
+  <data name="Round2" xml:space="preserve">
+    <value>Round 2</value>
+  </data>
+  <data name="Round3" xml:space="preserve">
+    <value>Round 3</value>
+  </data>
+  <data name="Transmit" xml:space="preserve">
+    <value>Transmit</value>
+  </data>
+  <data name="TransmitCandidate" xml:space="preserve">
+    <value>Transmit candidate</value>
+  </data>
+  <data name="EditProcessSuccess" xml:space="preserve">
+    <value>Edit interview process success</value>
+  </data>
+  <data name="Inactive" xml:space="preserve">
+    <value>Inactive</value>
+  </data>
+  <data name="ProcessListRoundNotEmpty" xml:space="preserve">
+    <value>Process list round can not empty</value>
+  </data>
+  <data name="ProcessNameNotEmpty" xml:space="preserve">
+    <value>Process name can not empty</value>
+  </data>
+  <data name="ProcessStartDateNotEmpty" xml:space="preserve">
+    <value>Process start date can not empty</value>
+  </data>
+  <data name="SystemMaintain" xml:space="preserve">
+    <value>The system is maintenance. Please contact the administrator</value>
+  </data>
+  <data name="ViewCandidate" xml:space="preserve">
+    <value>View candidate</value>
+  </data>
+  <data name="AreYouSureYouWantToDeleteThisCandidate" xml:space="preserve">
+    <value>Are you sure you want to delete this Candidate ?</value>
+  </data>
+  <data name="DeleteCandidateFail" xml:space="preserve">
+    <value>Delete Candidate Fail!!!</value>
+  </data>
+  <data name="DeleteCandidateSuccessful" xml:space="preserve">
+    <value>Delete Candidate Successful!!!</value>
+  </data>
+  <data name="ManagementCandidate" xml:space="preserve">
+    <value>Candidate Management</value>
+  </data>
+  <data name="UploadFileBrowser" xml:space="preserve">
+    <value>Browser</value>
+  </data>
+  <data name="UploadFileLabel" xml:space="preserve">
+    <value>Upload file</value>
+  </data>
+  <data name="PersonalInformation" xml:space="preserve">
+    <value>Personal information</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="ResetCandidateButton" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Date of birth</value>
+  </data>
+  <data name="CoincidenceStatus" xml:space="preserve">
+    <value>Coincidence status</value>
+  </data>
+  <data name="AddCandidate" xml:space="preserve">
+    <value>Add candidate</value>
+  </data>
+  <data name="AddCandidateButton" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="CancelCandidateButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CandidateEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="CandidateName" xml:space="preserve">
+    <value>Candidate name</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>items</value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CreateRound" xml:space="preserve">
+    <value>Create Interview Round</value>
+  </data>
+  <data name="DeleteRound" xml:space="preserve">
+    <value>Delete Interview Round</value>
+  </data>
+  <data name="DetailRound" xml:space="preserve">
+    <value>Detail Interview Round</value>
+  </data>
+  <data name="EditRound" xml:space="preserve">
+    <value>Edit Interview Round</value>
+  </data>
+  <data name="ListRounds" xml:space="preserve">
+    <value>List Interview Round</value>
+  </data>
+  <data name="ManagementInterviewRound" xml:space="preserve">
+    <value>Maganement Interview Round</value>
+  </data>
+  <data name="CandidateNotFound" xml:space="preserve">
+    <value>Candidate not found</value>
+  </data>
+  <data name="CanNotGetCandidateProfile" xml:space="preserve">
+    <value>Can not get candidate profile</value>
+  </data>
+  <data name="CreateCandidate" xml:space="preserve">
+    <value>Create Candidate</value>
+  </data>
+  <data name="ManagementQuestions" xml:space="preserve">
+    <value>Management Questions</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="EndTime" xml:space="preserve">
+    <value>End Time</value>
+  </data>
+  <data name="Interviewers" xml:space="preserve">
+    <value>Interviewers</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="Room" xml:space="preserve">
+    <value>Room</value>
+  </data>
+  <data name="StartTime" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="Subject" xml:space="preserve">
+    <value>Subject</value>
+  </data>
+  <data name="ChooseRoom" xml:space="preserve">
+    <value>Choose Room</value>
+  </data>
+  <data name="EmailContent" xml:space="preserve">
+    <value>Email Content</value>
+  </data>
+  <data name="Send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="ToInterviewers" xml:space="preserve">
+    <value>To Interviewers</value>
+  </data>
+  <data name="CandidateAnswer" xml:space="preserve">
+    <value>Candidate's Answer</value>
+  </data>
+  <data name="CandidateInformation" xml:space="preserve">
+    <value>Personal information</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>Finish</value>
+  </data>
+  <data name="InterviewSchedule" xml:space="preserve">
+    <value>Interview Schedule</value>
+  </data>
+  <data name="InterviewResults" xml:space="preserve">
+    <value>Interview Results</value>
+  </data>
+  <data name="Mark" xml:space="preserve">
+    <value>Mark</value>
+  </data>
+  <data name="Note" xml:space="preserve">
+    <value>Note</value>
+  </data>
+  <data name="NotSupportedFunction" xml:space="preserve">
+    <value>This function is not supported yet</value>
+  </data>
+  <data name="Recording" xml:space="preserve">
+    <value>Recording</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Result</value>
+  </data>
+  <data name="Round" xml:space="preserve">
+    <value>Round</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="University" xml:space="preserve">
+    <value>University</value>
+  </data>
+  <data name="ListQuestion" xml:space="preserve">
+    <value>List questions</value>
+  </data>
+  <data name="CreateUser" xml:space="preserve">
+    <value>Create User</value>
+  </data>
+  <data name="EditUser" xml:space="preserve">
+    <value>Edit User</value>
+  </data>
+  <data name="ListUser" xml:space="preserve">
+    <value>List User</value>
+  </data>
+  <data name="ManagementUser" xml:space="preserve">
+    <value>Management User</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+  </data>
+  <data name="AccountRequired" xml:space="preserve">
+    <value>Account is required</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="ApplyForGroup" xml:space="preserve">
+    <value>Apply For</value>
+  </data>
+  <data name="CandidatesManagement" xml:space="preserve">
+    <value>Candidates Management</value>
+  </data>
+  <data name="Certification" xml:space="preserve">
+    <value>Certificate</value>
+  </data>
+  <data name="Documents" xml:space="preserve">
+    <value>Documents</value>
+  </data>
+  <data name="EditCandidate" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Education" xml:space="preserve">
+    <value>Education</value>
+  </data>
+  <data name="GPA" xml:space="preserve">
+    <value>GPA</value>
+  </data>
+  <data name="IdCard" xml:space="preserve">
+    <value>ID Card</value>
+  </data>
+  <data name="InterviewAdmin" xml:space="preserve">
+    <value>Interview Admin</value>
+  </data>
+  <data name="Major" xml:space="preserve">
+    <value>Major</value>
+  </data>
+  <data name="SkillsGroup" xml:space="preserve">
+    <value>Skills/Certificates</value>
+  </data>
+  <data name="SkillsLabel" xml:space="preserve">
+    <value>Skills</value>
+  </data>
+  <data name="AddInterviewProcessFailed" xml:space="preserve">
+    <value>Add interview process failed. Please try againt!</value>
+  </data>
+  <data name="Interview" xml:space="preserve">
+    <value>Interview management</value>
+  </data>
+  <data name="InterviewProcess" xml:space="preserve">
+    <value>InterviewProcess</value>
+  </data>
+  <data name="CreateSkillFailed" xml:space="preserve">
+    <value>Create skill failed</value>
+  </data>
+  <data name="CreateSkillSuccess" xml:space="preserve">
+    <value>Create skill success!</value>
+  </data>
+  <data name="DeleteSkillFailed" xml:space="preserve">
+    <value>Delete skill failed</value>
+  </data>
+  <data name="DeleteSkillSuccess" xml:space="preserve">
+    <value>Delete skill success</value>
+  </data>
+  <data name="ErrorNameExistSkill" xml:space="preserve">
+    <value>Error: Name is exist !</value>
+  </data>
+  <data name="UpdateSkillFailed" xml:space="preserve">
+    <value>Update skill failed</value>
+  </data>
+  <data name="UpdateSkillSuccess" xml:space="preserve">
+    <value>Update skill success</value>
+  </data>
+  <data name="AddCatalog" xml:space="preserve">
+    <value>Add Catalog</value>
+  </data>
+  <data name="AddGuideline" xml:space="preserve">
+    <value>Add Guideline</value>
+  </data>
+  <data name="AddQuestion" xml:space="preserve">
+    <value>Add Question</value>
+  </data>
+  <data name="Answer" xml:space="preserve">
+    <value>Answer</value>
+  </data>
+  <data name="Content" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="DeleteQuestion" xml:space="preserve">
+    <value>Delete Question</value>
+  </data>
+  <data name="DetailCatalog" xml:space="preserve">
+    <value>Detail Catalog</value>
+  </data>
+  <data name="DetailGuideline" xml:space="preserve">
+    <value>Detail Guideline</value>
+  </data>
+  <data name="DetailQuestion" xml:space="preserve">
+    <value>Detail Question</value>
+  </data>
+  <data name="EditCatalog" xml:space="preserve">
+    <value>Edit Catalog</value>
+  </data>
+  <data name="EditGuideline" xml:space="preserve">
+    <value>Edit Guideline</value>
+  </data>
+  <data name="EditQuestion" xml:space="preserve">
+    <value>Edit Question</value>
+  </data>
+  <data name="ListCatalog" xml:space="preserve">
+    <value>List Catalog</value>
+  </data>
+  <data name="ListGuideline" xml:space="preserve">
+    <value>List Guideline</value>
+  </data>
+  <data name="ManagementCatalog" xml:space="preserve">
+    <value>Management Catalog</value>
+  </data>
+  <data name="ManagementGuideline" xml:space="preserve">
+    <value>Management Guideline</value>
+  </data>
+  <data name="AreYouSureYouWantToDeleteThisQuestion" xml:space="preserve">
+    <value>Are You Sure You Want To Delete This Question?</value>
+  </data>
+  <data name="CodeExist" xml:space="preserve">
+    <value>Code or name is exist</value>
+  </data>
+  <data name="CreateErPo" xml:space="preserve">
+    <value>Error! When you add new position.</value>
+  </data>
+  <data name="CreateSuPo" xml:space="preserve">
+    <value>Success! You add new position successfully.</value>
+  </data>
+  <data name="DeleteErPo" xml:space="preserve">
+    <value>Error! You delete not successfully.</value>
+  </data>
+  <data name="DeleteSuPo" xml:space="preserve">
+    <value>Success! You delete position succesfully.</value>
+  </data>
+  <data name="EditErPo" xml:space="preserve">
+    <value>Error! When you update position information.</value>
+  </data>
+  <data name="EditSuPo" xml:space="preserve">
+    <value>Success! You update position successfully.</value>
+  </data>
+  <data name="CatalogName" xml:space="preserve">
+    <value>Catalog Name</value>
+  </data>
+  <data name="EditInterviewResult" xml:space="preserve">
+    <value>Edit Interview Result</value>
+  </data>
+  <data name="GuidelineName" xml:space="preserve">
+    <value>Guideline Name</value>
+  </data>
+  <data name="InterviewInfo" xml:space="preserve">
+    <value>Interview Info</value>
+  </data>
+  <data name="InterviewResultsManagement" xml:space="preserve">
+    <value>Interview Results Management</value>
+  </data>
+  <data name="EditInterviewProcessFailed" xml:space="preserve">
+    <value>Edit interview process failed. Please try againt!</value>
+  </data>
+  <data name="QuestionName" xml:space="preserve">
+    <value>Question Name</value>
+  </data>
+  <data name="AccountExist" xml:space="preserve">
+    <value>Account existed</value>
+  </data>
+  <data name="AccountIncorrect" xml:space="preserve">
+    <value>Account incorrect</value>
+  </data>
+  <data name="AddUserFail" xml:space="preserve">
+    <value>Add user not success</value>
+  </data>
+  <data name="AddUserSuccess" xml:space="preserve">
+    <value>Add user success</value>
+  </data>
+  <data name="EnterAccount" xml:space="preserve">
+    <value>Enter Account</value>
+  </data>
+  <data name="RoleNotChoose" xml:space="preserve">
+    <value>Role not choose</value>
+  </data>
+  <data name="UpdateUserFail" xml:space="preserve">
+    <value>Update user not sussess</value>
+  </data>
+  <data name="UpdateUserSuccess" xml:space="preserve">
+    <value>Updae user not success</value>
+  </data>
+  <data name="DataIsNull" xml:space="preserve">
+    <value>Data is Null</value>
+  </data>
+  <data name="InterviewerManagement" xml:space="preserve">
+    <value>Interviewer Management</value>
+  </data>
+  <data name="CandidateEmailInvalid" xml:space="preserve">
+    <value>Email address is invalid</value>
+  </data>
+  <data name="CandidateEmailRequired" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
+  <data name="CandidateIdCardInvalid" xml:space="preserve">
+    <value>ID card has 9 numberics</value>
+  </data>
+  <data name="CandidateNameInvalid" xml:space="preserve">
+    <value>Name doesn't contain special characters</value>
+  </data>
+  <data name="CandidateNameRequired" xml:space="preserve">
+    <value>Full name is required</value>
+  </data>
+  <data name="CandidatePhoneInvalid" xml:space="preserve">
+    <value>Phone number has must 10 or 11 numberics</value>
+  </data>
+  <data name="CandidatePhoneRequired" xml:space="preserve">
+    <value>Phone number is required</value>
+  </data>
+  <data name="CandidatePositionRequired" xml:space="preserve">
+    <value>Position is required</value>
+  </data>
+  <data name="CandidateSkillRequired" xml:space="preserve">
+    <value>Skill is required</value>
+  </data>
+  <data name="CandidateUniversityRequired" xml:space="preserve">
+    <value>University is required</value>
+  </data>
+  <data name="DetailInterviewProcessPageLoadFailed" xml:space="preserve">
+    <value>Load detail interview process page failed. Please try againt!</value>
+  </data>
+  <data name="DetailInterviewRoundPageLoadFailed" xml:space="preserve">
+    <value>Load detail interview round page failed. Please try againt!</value>
+  </data>
+  <data name="Calendar" xml:space="preserve">
+    <value>Calendar</value>
+  </data>
+  <data name="MaxPoint" xml:space="preserve">
+    <value>Max Point</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>Question</value>
+  </data>
+  <data name="InterviewProcessNameTooLong" xml:space="preserve">
+    <value>Interview Process name can not exceed 100 characters</value>
+  </data>
+  <data name="InterviewProcessStartDateTooLong" xml:space="preserve">
+    <value>Interview Process start date can not exceed 10 characters</value>
+  </data>
+  <data name="NameExist" xml:space="preserve">
+    <value>Code or name is existed.</value>
+  </data>
+  <data name="CannotTransmit" xml:space="preserve">
+    <value>Cannot transmit candidate. Please check again</value>
+  </data>
+  <data name="SelectOtherInterviewAdmin" xml:space="preserve">
+    <value>Cannot transmit candidate. Please select other interview admin</value>
+  </data>
+  <data name="TransmitFail" xml:space="preserve">
+    <value>Transmit candidate fail</value>
+  </data>
+  <data name="TransmitSucess" xml:space="preserve">
+    <value>Transmit candidate successful!!!</value>
+  </data>
+  <data name="CreateInterviewRoundFail" xml:space="preserve">
+    <value>Create Interview Round failed !!!</value>
+  </data>
+  <data name="CreateInterviewRoundSuccess" xml:space="preserve">
+    <value>Create InterviewRound successful !!!</value>
+  </data>
+  <data name="ErrorCandidateCreateFail" xml:space="preserve">
+    <value>Can not create candidate.</value>
+  </data>
+  <data name="ErrorCandidateCreateUploadFail" xml:space="preserve">
+    <value>Can not create candidate, save file failed.</value>
+  </data>
+  <data name="ErrorCandidateLoadProfileFail" xml:space="preserve">
+    <value>Can not get candidate profile.</value>
+  </data>
+  <data name="ErrorCandidateSaveProfileFail" xml:space="preserve">
+    <value>Can not save candidate profile.</value>
+  </data>
+  <data name="SuccessCandidateCreate" xml:space="preserve">
+    <value>Add candidate successfully!</value>
+  </data>
+  <data name="CandidateIdCardLength" xml:space="preserve">
+    <value>ID Card has must be 9 numberics</value>
+  </data>
+  <data name="DeleteInterviewRoundFail" xml:space="preserve">
+    <value>Delete Interview Round failed !!!</value>
+  </data>
+  <data name="DeleteInterviewRoundSuccess" xml:space="preserve">
+    <value>Delete Interview Round successfu l!!!</value>
+  </data>
+  <data name="EditInterviewRoundFail" xml:space="preserve">
+    <value>Edit Interview Round failed !!!</value>
+  </data>
+  <data name="EditInterviewRoundSuccess" xml:space="preserve">
+    <value>Edit Interview Round successful !!!</value>
+  </data>
+  <data name="InterviewRoundNotFound" xml:space="preserve">
+    <value>InterviewRound not found !!!</value>
+  </data>
+  <data name="InterviewProcessNotFound" xml:space="preserve">
+    <value>Interview process is not found.</value>
+  </data>
+  <data name="InterviewProcessNull" xml:space="preserve">
+    <value>Interview process can not null!</value>
+  </data>
+  <data name="MeetingRequest" xml:space="preserve">
+    <value>Meeting Request</value>
+  </data>
+  <data name="ClearFilter" xml:space="preserve">
+    <value>Clear Filter</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="FromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="LoadingData" xml:space="preserve">
+    <value>Loading Data</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="ReportSkillAndCareers" xml:space="preserve">
+    <value>Report Skill And Careers</value>
+  </data>
+  <data name="ToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="LoadCandidateIsFail" xml:space="preserve">
+    <value>Load Candidate Is Fail</value>
+  </data>
+  <data name="CatalogID" xml:space="preserve">
+    <value>Catalog ID</value>
+  </data>
+  <data name="GuidelineID" xml:space="preserve">
+    <value>Guideline ID</value>
+  </data>
+  <data name="ListCatalogInGuideline" xml:space="preserve">
+    <value>List Catalog In Guideline</value>
+  </data>
+  <data name="ChooseResult" xml:space="preserve">
+    <value>Choose position</value>
+  </data>
+  <data name="AddNewCatalog" xml:space="preserve">
+    <value>Add New Catalog</value>
+  </data>
+  <data name="AddNewQuestion" xml:space="preserve">
+    <value>Add New Question</value>
+  </data>
+  <data name="SkillNameUnvalid" xml:space="preserve">
+    <value>Name is unvalid</value>
+  </data>
+  <data name="DataUnvalid" xml:space="preserve">
+    <value>Data is unvalid</value>
+  </data>
+  <data name="EnterRole" xml:space="preserve">
+    <value>Enter role</value>
+  </data>
+  <data name="Candidates" xml:space="preserve">
+    <value>Candidates</value>
+  </data>
+  <data name="CandidatesGST" xml:space="preserve">
+    <value>Candidates GST</value>
+  </data>
+  <data name="Interviewer" xml:space="preserve">
+    <value>Interviewer</value>
+  </data>
+  <data name="ErrorFillReport" xml:space="preserve">
+    <value>Fill in at least one input to filter data</value>
+  </data>
+  <data name="InterviewResult" xml:space="preserve">
+    <value>Interview Result</value>
+  </data>
+  <data name="ReportCandidates" xml:space="preserve">
+    <value>Report Candidates</value>
+  </data>
+  <data name="ReportCandidatesGst" xml:space="preserve">
+    <value>Report Candidates GST</value>
+  </data>
+  <data name="CreateCatalogFails" xml:space="preserve">
+    <value>Create Catalog Fails!</value>
+  </data>
+  <data name="CreateCatalogSuccess" xml:space="preserve">
+    <value>Create Catalog Success!</value>
+  </data>
+  <data name="CreateGuidelineFails" xml:space="preserve">
+    <value>Create Guideline Fails!</value>
+  </data>
+  <data name="CreateGuidelineSuccess" xml:space="preserve">
+    <value>Create Guideline Success!</value>
+  </data>
+  <data name="CreateQuestionFails" xml:space="preserve">
+    <value>Create Question Fails!</value>
+  </data>
+  <data name="CreateQuestionSuccess" xml:space="preserve">
+    <value>Create Question Success!</value>
+  </data>
+  <data name="DeteleGuidelineFails" xml:space="preserve">
+    <value>Detele Guideline Fails!</value>
+  </data>
+  <data name="DeteleGuidelineSuccess" xml:space="preserve">
+    <value>Detele Guideline Success!</value>
+  </data>
+  <data name="DeteleQuestionFails" xml:space="preserve">
+    <value>Detele Question Fails!</value>
+  </data>
+  <data name="DeteleQuestionSuccess" xml:space="preserve">
+    <value>Detele Question Success!</value>
+  </data>
+  <data name="DeteteCatalogFails" xml:space="preserve">
+    <value>Detete Catalog Fails!</value>
+  </data>
+  <data name="DeteteCatalogSuccess" xml:space="preserve">
+    <value>Detete Catalog Success!</value>
+  </data>
+  <data name="LoadCatalogFails" xml:space="preserve">
+    <value>Load Catalog Fails!</value>
+  </data>
+  <data name="LoadCatalogSuccess" xml:space="preserve">
+    <value>Load Catalog Success!</value>
+  </data>
+  <data name="LoadGuidelineFails" xml:space="preserve">
+    <value>Load Guideline Fails!</value>
+  </data>
+  <data name="LoadGuidelineSuccess" xml:space="preserve">
+    <value>Load Guideline Success!</value>
+  </data>
+  <data name="LoadQuestionFails" xml:space="preserve">
+    <value>Load Question Fails!</value>
+  </data>
+  <data name="LoadQuestionSuccess" xml:space="preserve">
+    <value>Load Question Success!</value>
+  </data>
+  <data name="UpdateCatalogFails" xml:space="preserve">
+    <value>Update Catalog Fails!</value>
+  </data>
+  <data name="UpdateCatalogSuccess" xml:space="preserve">
+    <value>Update Catalog Success!</value>
+  </data>
+  <data name="UpdateGuidelineFails" xml:space="preserve">
+    <value>Update Guideline Fails!</value>
+  </data>
+  <data name="UpdateGuidelineSuccess" xml:space="preserve">
+    <value>Update Guideline Success!</value>
+  </data>
+  <data name="UpdateQuestionFails" xml:space="preserve">
+    <value>Update Question Fails!</value>
+  </data>
+  <data name="UpdateQuestionSuccess" xml:space="preserve">
+    <value>Update Question Success!</value>
+  </data>
+  <data name="CheckCode" xml:space="preserve">
+    <value>* Code is number or alphatbet upper characters and from 1 to 20 characters</value>
+  </data>
+  <data name="CheckName" xml:space="preserve">
+    <value>* Name is not special characters</value>
+  </data>
+  <data name="AccountInterviewer" xml:space="preserve">
+    <value>Interviewer Account</value>
+  </data>
+  <data name="NameInterviewer" xml:space="preserve">
+    <value>Interviewer Name</value>
+  </data>
+  <data name="NumOfCandidate" xml:space="preserve">
+    <value>NumOfCandidate</value>
+  </data>
+  <data name="PassFail" xml:space="preserve">
+    <value>Pass/Fail/NonePassFail</value>
+  </data>
+  <data name="CandidateAddressLengh" xml:space="preserve">
+    <value>Address exceeds 50 characters</value>
+  </data>
+  <data name="CandidateEmailLengh" xml:space="preserve">
+    <value>Email exceeds 50 characters</value>
+  </data>
+  <data name="CandidateMajorLengh" xml:space="preserve">
+    <value>Major exceeds 50 characters</value>
+  </data>
+  <data name="CandidateNameLengh" xml:space="preserve">
+    <value>Name exceeds 50 characters</value>
+  </data>
+  <data name="CandidateUniversityLengh" xml:space="preserve">
+    <value>University's name exceeds 50 characters</value>
+  </data>
+  <data name="SaveCandidateButton" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="SuccessCandidateUpdate" xml:space="preserve">
+    <value>Update candidate successfully!</value>
+  </data>
+  <data name="AddQuestionFail" xml:space="preserve">
+    <value>Add Question Fail!</value>
+  </data>
+  <data name="GenerateInterviewAnswerFail" xml:space="preserve">
+    <value>Generate Interview Answer For Empty Interview Fail!</value>
+  </data>
+  <data name="GetInterviewInfoFail" xml:space="preserve">
+    <value>Get Interview Info Fail!</value>
+  </data>
+  <data name="IDPositive" xml:space="preserve">
+    <value>ID must be positive</value>
+  </data>
+  <data name="LoadInterviewFail" xml:space="preserve">
+    <value>Load Interview Fail!</value>
+  </data>
+  <data name="LoadInterviewResultsFail" xml:space="preserve">
+    <value>Load Interview Results Fail!</value>
+  </data>
+  <data name="LoadInterviewScheduleFail" xml:space="preserve">
+    <value>Load Interview Schedule Fail!</value>
+  </data>
+  <data name="ObjectNotNull" xml:space="preserve">
+    <value>Object must not be null</value>
+  </data>
+  <data name="PassOrFail" xml:space="preserve">
+    <value>Value must be Pass or Fail!</value>
+  </data>
+  <data name="SetAswerorCommentFail" xml:space="preserve">
+    <value>Set Answer or Comment Fail!</value>
+  </data>
+  <data name="SetCatalogMarkFail" xml:space="preserve">
+    <value>Set Catalog Mark Fail!</value>
+  </data>
+  <data name="SetResultFail" xml:space="preserve">
+    <value>Set Result Fail!</value>
+  </data>
+  <data name="NoDuplication" xml:space="preserve">
+    <value>No Duplication</value>
+  </data>
+  <data name="GuidelineInterviewManagement" xml:space="preserve">
+    <value>Guide Interview Management</value>
+  </data>
+  <data name="CandidateProfile" xml:space="preserve">
+    <value>Candidate profile</value>
+  </data>
+  <data name="CandidateSkill" xml:space="preserve">
+    <value>Skill</value>
+  </data>
+  <data name="InterviewHistory" xml:space="preserve">
+    <value>Interview History</value>
+  </data>
+  <data name="OtherInfo" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="AssignCandidates" xml:space="preserve">
+    <value>Assign candidates</value>
+  </data>
+  <data name="CloseButton" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="InformationAssign" xml:space="preserve">
+    <value>Information assign</value>
+  </data>
+  <data name="SubmitButton" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+</root>

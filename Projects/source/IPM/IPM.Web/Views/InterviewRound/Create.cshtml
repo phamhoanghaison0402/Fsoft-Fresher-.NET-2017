@@ -1,0 +1,51 @@
+﻿@using PagedList.Mvc
+@model PagedList.IPagedList<IPM.Model.Models.InterviewRound>
+<!-- Content Header (Page header) -->
+<div id="interviewRoundCreateModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">@IPM.Web.MultiLanguage.Resource.CreateRound</h4>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "InterviewRound", FormMethod.Post))
+                {
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        <div class="form-group" id="roundNameForm">
+                            <label><span class="glyphicon "></span>@IPM.Web.MultiLanguage.Resource.RoundName</label>
+                            <input type="text" id="roundName" maxlength="50" name="roundName" class="form-control" tabindex="1" onclick="removeValidate()"/>
+                            <span class="help-block hidden" id="roundNameRequired"><i class="fa fa-times-circle-o"></i>This field can not be empty</span>
+                        </div>
+                        <div class="form-group">
+                            <label><span class="glyphicon "></span>@IPM.Web.MultiLanguage.Resource.Description</label>
+                            <input type="text" name="description" maxlength="100" class="form-control" tabindex="2" />
+                        </div>
+                        <div class="form-group">
+                            <label><span class="glyphicon "></span>@IPM.Web.MultiLanguage.Resource.GuidelineName</label>
+                            <select class="form-control select2" name="guidelineID" style="width: 100%;" tabindex="3">
+                                @foreach (var listGuideLine in ViewBag.ListGuideline)
+                                {
+                                    <option value="@listGuideLine.Value">@listGuideLine.Text</option>
+                                }
+                            </select>
+                        </div>
+                             <!-- /.box-body -->
+                        <div class="box-footer">
+                        </div>
+                            <!-- /.box-footer -->
+                        <div class="modal-footer">
+                            <button type="button" id="submitButton" name="submitButton" onclick="validate()" class="btn btn-primary btn-flat pull-right "><span class="glyphicon"></span>@IPM.Web.MultiLanguage.Resource.Save</button>
+                            <button type="button" class="btn btn-default pull-left" onclick="removeValidate()" data-dismiss="modal"><span class="glyphicon "></span>@IPM.Web.MultiLanguage.Resource.Cancel</button>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/InterviewRound/ValidateCreate.js"></script>
+
+

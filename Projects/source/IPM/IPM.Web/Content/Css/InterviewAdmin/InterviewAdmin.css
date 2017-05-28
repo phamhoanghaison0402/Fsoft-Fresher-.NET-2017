@@ -1,0 +1,31 @@
+﻿
+/*--*/
+
+.div_ViewItem {
+    padding-top: 5px;
+}
+
+.table-listInterviewAdmin th,td {
+    text-align: left;
+}
+
+#modal-container {
+    margin-top: 20px;
+}
+
+#modal-container label{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#modal-container label:first-child{
+    padding-left: 35px;
+}
+
+#modal-container .col-md-8{
+    width: 100%;
+}
+
+#div-search-admin {
+    padding-right: 15px;
+}

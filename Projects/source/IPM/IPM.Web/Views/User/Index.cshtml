@@ -1,0 +1,148 @@
+﻿@using System.Configuration
+@using PagedList.Mvc
+@model PagedList.IPagedList<IPM.Business.InfoUser>
+@{
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+}
+@{
+    Layout = "~/Views/Layout/HomeLayout.cshtml";
+    ViewBag.Title = @IPM.Web.MultiLanguage.Resource.ManagementUser;
+    var selectRecord = ViewBag.SelectRecord as string[];
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        @IPM.Web.MultiLanguage.Resource.ManagementUser
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="@Url.Action("Index","Home")"><i class="fa fa-dashboard"></i> @IPM.Web.MultiLanguage.Resource.Home</a></li>
+        <li class="active">@IPM.Web.MultiLanguage.Resource.ManagementUser</li>
+    </ol>
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">@IPM.Web.MultiLanguage.Resource.ListUser</h3>
+                    <div class="box-tools">
+                        <button class="btn btn-primary" onclick="@("window.location.href='" + Url.Action("Create", "User") + "'"); ">
+                            <i class="fa fa-plus"></i>
+                            @IPM.Web.MultiLanguage.Resource.CreateUser
+                        </button>
+                    </div>
+                </div>
+                @using (Html.BeginForm("Index", "User", FormMethod.Get))
+                { 
+                    <div class="col-md-2 div_ViewItem">
+                      <label>
+                          View
+                          
+                          <select name="record" id="record">
+                              
+                              @for (int i = 0; i < selectRecord.Length; i++)
+                              {
+                                  <option value="@selectRecord[i]">@selectRecord[i]</option>
+                              }
+
+                          </select>
+                          items
+                      </label>
+                      <script>
+                          $('#record').on('change', function () {
+                              var select = $(this);
+                              var data = { numberOfRows: select.val() }; // < added test values
+                              window.location.href = '/User/Index/?searchString=@ViewBag.searchString&page=@ViewBag.page&record=' + select.val();
+                              //callback function
+                          });
+                      </script>
+                  </div>
+                        
+                    <div class="input-group form-group" style="text-align: left; width:600px">
+                        <input class="form-control" type="text" name="searchString" placeholder="@IPM.Web.MultiLanguage.Resource.EnterAccount" value="@ViewBag.searchString" style="width: 100%;"/>
+                     
+                    </div>
+                }
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tr>     
+                            <th style="width: 20%;">@IPM.Web.MultiLanguage.Resource.Account</th>
+                            <th style="width: 30%;">@IPM.Web.MultiLanguage.Resource.FullName</th>
+                            <th style="width: 30%;">@IPM.Web.MultiLanguage.Resource.Roles</th>
+                            <th style="width: 10%;">@IPM.Web.MultiLanguage.Resource.Status</th>
+                            <th style="width: 10%;">@IPM.Web.MultiLanguage.Resource.Action</th>
+                        </tr>
+                       @*Load list User*@
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td style="text-align: left; ">@item.GetAccount()</td>
+                                <td style="text-align: left; width: 20%;">@item.GetFullName()</td>                             
+                                <td style="text-align:left">
+                                    <div class="btn-group">
+                                        @foreach (var item1 in item.GetRoles())
+                                        {
+                                            if (item1.GetRoles() == "Interviewer")
+                                            {
+                                                <p style="display:inline-block; margin: 0 10px; padding:10px; color:green;">@item1.GetRoles()</p>
+                                            }
+                                            else if (item1.GetRoles() == "Interview Admin")
+                                            {
+                                                <p style="display:inline-block; margin: 0 10px; padding:10px; color:red;">@item1.GetRoles()</p>
+                                            }
+                                            else
+                                            {
+                                                <p style="display:inline-block; margin: 0 10px; padding:10px; color:blue;">@item1.GetRoles()</p>
+                                            }
+                                        }
+                                    </div>
+                                </td>
+                                @if (item.GetActive())
+                                {
+                                    <td style="text-align:left">@IPM.Web.MultiLanguage.Resource.Active</td>
+                                }
+                                else {
+                                <td style="text-align:left">@IPM.Web.MultiLanguage.Resource.Inactive</td>
+                                }
+                           
+                                <td style="width:120px">
+                                    <div class="btn-group">
+                                       
+                                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                            <span class="fa fa-cogs"></span>
+                                            <span class="sr-only">Toggle Dropdown</span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="@Url.Action("Update", new { Account = item.GetAccount() })"><i class="fa fa-edit"></i>@IPM.Web.MultiLanguage.Resource.Edit</a></li>             
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            }
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <div class="pull-left" style="padding-top:20px">
+                        <h3 class="panel-title">@IPM.Web.MultiLanguage.Resource.Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount </h3>
+                    </div>
+                    <div class="pull-right">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page, record = ViewBag.record , searchString = ViewBag.searchString}))
+                    </div>
+                </div>
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+<!-- /.content -->
+<script>
+    (function setRecord() {
+        $('#record').val(@ViewBag.record);
+    })();
+</script>
